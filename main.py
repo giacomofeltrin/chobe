@@ -10,9 +10,6 @@ import xbmcplugin
 from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
-import requests
-import json
-from beautifulsoup4 import BeautifulSoup
 from animeita import get_animesaturn
 
 # Get the plugin url in plugin:// notation.
