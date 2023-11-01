@@ -15,12 +15,10 @@ provider-name="Giacomo">
   <disclaimer lang="en_GB">Public domain movies are provided by publicdomainmovie.net.</disclaimer>
   <license>GPL-3.0-only	</license>
   <assets>
-    <icon>icon.png</icon>
-    <!--
-    <fanart>resources/images/fanart.jpg</fanart>
-    <screenshot>resources/images/screenshot-1.jpg</screenshot>
-    <screenshot>resources/images/screenshot-2.jpg</screenshot>
-    -->
+    <icon>resources/images/icon.png</icon>
+    <fanart>resources/images/fanart.png</fanart>
+    <screenshot>resources/images/screenshot-1.png</screenshot>
+    <screenshot>resources/images/screenshot-2.png</screenshot>
   </assets>
   <news>News placeholder</news>
 </extension>
