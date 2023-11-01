@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.example"
-version="0.0.0"
+version="0.0.1"
 name="Example Kodi Video Plugin"
 provider-name="Giacomo">
 <requires>
@@ -16,9 +16,9 @@ provider-name="Giacomo">
   <license>GPL-3.0-only	</license>
   <assets>
     <icon>resources/images/icon.png</icon>
-    <fanart>resources/images/fanart.png</fanart>
-    <screenshot>resources/images/screenshot-1.png</screenshot>
-    <screenshot>resources/images/screenshot-2.png</screenshot>
+    <fanart>resources/images/fanart.jpg</fanart>
+    <screenshot>resources/images/screenshot-1.jpg</screenshot>
+    <screenshot>resources/images/screenshot-2.jpg</screenshot>
   </assets>
   <news>News placeholder</news>
 </extension>
