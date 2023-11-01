@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/giacomofeltrin/chobe/compare/v0.2.0...v0.2.1) (2023-11-01)
+
+
+### Bug Fixes
+
+* update python dependency ([d9d1eb1](https://github.com/giacomofeltrin/chobe/commit/d9d1eb1bb2a0b41d14aafc9dd43bc68a72533118))
+
+
+
 # [0.2.0](https://github.com/giacomofeltrin/chobe/compare/v0.1.0...v0.2.0) (2023-11-01)
 
 
