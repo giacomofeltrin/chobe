@@ -1,5 +1,5 @@
 """
-Example video plugin that is compatible with Kodi 20.x "Nexus" and above
+Video plugin that is compatible with Kodi 20.x "Nexus" and above
 """
 import os
 import sys
@@ -200,7 +200,7 @@ def list_genres():
         info_tag.setTitle(genre_info['genre'])
         info_tag.setGenres([genre_info['genre']])
         # Create a URL for a plugin recursive call.
-        # Example: plugin://plugin.video.example/?action=listing&genre_index=0
+        # Example: plugin://chobe/?action=listing&genre_index=0
         url = get_url(action='listing', genre_index=index)
         # is_folder = True means that this item opens a sub-list of lower level items.
         is_folder = True
@@ -248,7 +248,7 @@ def list_videos(genre_index):
         # This is mandatory for playable items!
         list_item.setProperty('IsPlayable', 'true')
         # Create a URL for a plugin recursive call.
-        # Example: plugin://plugin.video.example/?action=play&video=https%3A%2F%2Fia600702.us.archive.org%2F3%2Fitems%2Firon_mask%2Firon_mask_512kb.mp4
+        # Example: plugin://chobe/?action=play&video=https%3A%2F%2Fia600702.us.archive.org%2F3%2Fitems%2Firon_mask%2Firon_mask_512kb.mp4
         url = get_url(action='play', video=video['url'])
         # Add the list item to a virtual Kodi folder.
         # is_folder = False means that this item won't open any sub-list.
