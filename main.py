@@ -1,3 +1,6 @@
+"""
+Example video plugin that is compatible with Kodi 20.x "Nexus" and above
+"""
 import os
 import sys
 from urllib.parse import urlencode, parse_qsl
