@@ -1,3 +1,12 @@
+## [0.3.3](https://github.com/giacomofeltrin/chobe/compare/v0.3.2...v0.3.3) (2023-11-01)
+
+
+### Bug Fixes
+
+* test try jpg images ([80dc22c](https://github.com/giacomofeltrin/chobe/commit/80dc22c7f2f81e8bfa456dbfcc0c03b821622660))
+
+
+
 ## [0.3.2](https://github.com/giacomofeltrin/chobe/compare/v0.3.1...v0.3.2) (2023-11-01)
 
 
