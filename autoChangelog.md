@@ -1,3 +1,23 @@
+# [0.4.0](https://github.com/giacomofeltrin/chobe/compare/v0.3.3...v0.4.0) (2023-11-01)
+
+
+### Bug Fixes
+
+* add dependencies in main ([7645d55](https://github.com/giacomofeltrin/chobe/commit/7645d5518d24361382dfba71fc0f1bc96cc3c79c))
+* basic names changes ([5a0412a](https://github.com/giacomofeltrin/chobe/commit/5a0412afa729e9e892532466660804e491017144))
+* bs4 dependency ([22c6992](https://github.com/giacomofeltrin/chobe/commit/22c6992608a44a8cebcf82eeafa1863ef039e41a))
+* extend bs4 name ([9473256](https://github.com/giacomofeltrin/chobe/commit/947325670559e05c0fc16246cf8a0bdae2ebccde))
+* hardcode year ([eac972d](https://github.com/giacomofeltrin/chobe/commit/eac972d599da473c5a55fba81e1a34d15dec0f4e))
+* main imports anime ([f206e3e](https://github.com/giacomofeltrin/chobe/commit/f206e3e7dcfe52600713c2eee182e2efef09a765))
+* return json from scraping ([0b039b3](https://github.com/giacomofeltrin/chobe/commit/0b039b3d315725ea89e4195137fb45a2cbf07702))
+
+
+### Features
+
+* add first animeita ([c32a9c2](https://github.com/giacomofeltrin/chobe/commit/c32a9c28e191276cc556e38dd11fae550ffb0dde))
+
+
+
 ## [0.3.3](https://github.com/giacomofeltrin/chobe/compare/v0.3.2...v0.3.3) (2023-11-01)
 
 
