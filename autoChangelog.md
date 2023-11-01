@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/giacomofeltrin/chobe/compare/v0.2.1...v0.2.2) (2023-11-01)
+
+
+### Bug Fixes
+
+* add temporary readme ([bb73f63](https://github.com/giacomofeltrin/chobe/commit/bb73f6342533acde63a8eb9e1e51418fc4888911))
+
+
+
 ## [0.2.1](https://github.com/giacomofeltrin/chobe/compare/v0.2.0...v0.2.1) (2023-11-01)
 
 
