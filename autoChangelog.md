@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/giacomofeltrin/chobe/compare/v0.3.1...v0.3.2) (2023-11-01)
+
+
+### Bug Fixes
+
+* add initial comment ([df7a7ec](https://github.com/giacomofeltrin/chobe/commit/df7a7ecdaffc81c94a937608ce951bc7cfd727f2))
+
+
+
 ## [0.3.1](https://github.com/giacomofeltrin/chobe/compare/v0.3.0...v0.3.1) (2023-11-01)
 
 
