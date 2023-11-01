@@ -1,6 +1,6 @@
 import requests
 import json
-from bs4 import BeautifulSoup
+from beautifulsoup4 import BeautifulSoup
 
 def get_animesaturn():
     # Define the URL to scrape
