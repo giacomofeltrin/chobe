@@ -32,7 +32,7 @@ def get_animesaturn():
                 "url": url,
                 "poster": image_url,
                 "plot": '',
-                "year": None
+                "year": 2023
             }
 
             anime_data.append(single_data)
