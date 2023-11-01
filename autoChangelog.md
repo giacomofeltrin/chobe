@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/giacomofeltrin/chobe/compare/v0.2.2...v0.3.0) (2023-11-01)
+
+
+### Features
+
+* convert to video addon ([0fef71f](https://github.com/giacomofeltrin/chobe/commit/0fef71f78f8645d0261cc39ea58a422df85662ab))
+
+
+
 ## [0.2.2](https://github.com/giacomofeltrin/chobe/compare/v0.2.1...v0.2.2) (2023-11-01)
 
 
