@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.video.example"
+<addon id="chobe"
 version="0.0.1"
-name="Example Kodi Video Plugin"
+name="Chobe"
 provider-name="Giacomo">
 <requires>
   <import addon="xbmc.python" version="3.0.1"/>
+  <import addon="script.module.beautifulsoup4" version="4.9.3"/>
 </requires>
 <extension point="xbmc.python.pluginsource" library="main.py">
   <provides>video</provides>
 </extension>
 <extension point="xbmc.addon.metadata">
-  <summary lang="en_GB">Example Kodi Video Plugin</summary>
-  <description lang="en_GB">An example video plugin for Kodi mediacenter.</description>
+  <summary lang="en_GB">Chobe Kodi Video Plugin</summary>
+  <description lang="en_GB">An video plugin for Kodi mediacenter.</description>
   <disclaimer lang="en_GB">Public domain movies are provided by publicdomainmovie.net.</disclaimer>
   <license>GPL-3.0-only	</license>
   <assets>

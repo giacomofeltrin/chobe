@@ -1,5 +1,5 @@
 """
-Example video plugin that is compatible with Kodi 20.x "Nexus" and above
+Video plugin that is compatible with Kodi 20.x "Nexus" and above
 """
 import os
 import sys
@@ -10,6 +10,8 @@ import xbmcplugin
 from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
+from animeita import get_animesaturn
+
 # Get the plugin url in plugin:// notation.
 URL = sys.argv[0]
 # Get a plugin handle as an integer number.
@@ -19,46 +21,12 @@ ADDON_PATH = translatePath(Addon().getAddonInfo('path'))
 ICONS_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'icons')
 FANART_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'fanart')
 
-# Public domain movies are from https://publicdomainmovie.net
-# Here we use a hardcoded list of movies simply for demonstrating purposes
-# In a "real life" plugin you will need to get info and links to video files/streams
-# from some website or online service.
 VIDEOS = [
     {
-        'genre': 'Drama',
-        'icon': os.path.join(ICONS_DIR, 'Drama.png'),
-        'fanart': os.path.join(FANART_DIR, 'Drama.jpg'),
-        'movies': [
-            {
-                'title': 'The Stranger',
-                'url': 'https://ia800908.us.archive.org/30/items/TheStranger_0/The_Stranger_512kb.mp4',
-                'poster': 'https://publicdomainmovie.net/wikimedia.php?id=Movie-Mystery-Magazine-July-1946.jpg',
-                'plot': 'In 1946, Mr. Wilson (Edward G. Robinson) of the United Nations War Crimes Commission is hunting for '
-                        'a Nazism fugitive Franz Kindler (Orson Welles), a war criminal who has erased all evidence which '
-                        'might identify him. Kindler has assumed a new identity, Charles Rankin, '
-                        'and has become a University-preparatory school#United States and Canada teacher '
-                        'in a small town in the United States. ',
-                'year': 1946,
-            },
-            {
-                'title': 'The Iron Mask',
-                'url': 'https://ia600702.us.archive.org/3/items/iron_mask/iron_mask_512kb.mp4',
-                'poster': 'https://publicdomainmovie.net/wikimedia.php?id=Ironmaskposter.jpg',
-                'plot': 'The Iron Mask is a 1929 American part-talkie adventure film directed by Allan Dwan. '
-                          'It is an adaptation of the last section of the novel The Vicomte de Bragelonne by '
-                          'Alexandre Dumas, père, which is itself based on the French legend of The Man in the Iron Mask.',
-                'year': 1929,
-            },
-            {
-                'title': 'Meet John Doe',
-                'url': 'https://ia804707.us.archive.org/30/items/meet_john_doe_ipod/video_512kb.mp4',
-                'poster': 'https://publicdomainmovie.net/wikimedia.php?id=Poster_-_Meet_John_Doe_01.jpg',
-                'plot': 'Meet John Doe is a 1941 in film United States comedy film drama film film directed and produced '
-                        'by Frank Capra, and starring Gary Cooper and Barbara Stanwyck. The film is about a "grassroots" '
-                        'political campaign created unwittingly by a newspaper columnist and pursued by a wealthy businessman.',
-                'year': 1941,
-            },
-        ],
+        'genre': 'Anime',
+        'icon': None,
+        'fanart': None,
+        'movies': get_animesaturn()
     },
     {
         'genre': 'Horror',
@@ -200,7 +168,7 @@ def list_genres():
         info_tag.setTitle(genre_info['genre'])
         info_tag.setGenres([genre_info['genre']])
         # Create a URL for a plugin recursive call.
-        # Example: plugin://plugin.video.example/?action=listing&genre_index=0
+        # Example: plugin://chobe/?action=listing&genre_index=0
         url = get_url(action='listing', genre_index=index)
         # is_folder = True means that this item opens a sub-list of lower level items.
         is_folder = True
@@ -248,7 +216,7 @@ def list_videos(genre_index):
         # This is mandatory for playable items!
         list_item.setProperty('IsPlayable', 'true')
         # Create a URL for a plugin recursive call.
-        # Example: plugin://plugin.video.example/?action=play&video=https%3A%2F%2Fia600702.us.archive.org%2F3%2Fitems%2Firon_mask%2Firon_mask_512kb.mp4
+        # Example: plugin://chobe/?action=play&video=https%3A%2F%2Fia600702.us.archive.org%2F3%2Fitems%2Firon_mask%2Firon_mask_512kb.mp4
         url = get_url(action='play', video=video['url'])
         # Add the list item to a virtual Kodi folder.
         # is_folder = False means that this item won't open any sub-list.
