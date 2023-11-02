@@ -247,19 +247,16 @@ def list_videos(genre_index):
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(HANDLE)
 
-
-
 def get_avideos(abutton):
     if abutton == "Recently Added":
-        url = "http://somewebsite.com/recent/" # Change this to a valid url that you want to scrape
-        videos = create_video_list(url)
+        videos = get_animesaturn('filter?years%5B0%5D=2023')
         return videos
     elif abutton == "Search":
         query = get_user_input() # User input via onscreen keyboard
         if not query:
             return [] # Return empty list if query is blank
-        url = "http://somewebsite.com/results/?query={}".format(quote(query)) # Change this to a valid url for search results that you want to scrape
-        videos = create_video_list(url)
+        subpath = "animelist?search=".format(quote(query))
+        videos = create_video_list(subpath)
         return videos
 
 def list_avideos(abutton):

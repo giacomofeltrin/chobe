@@ -2,12 +2,13 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
-def get_animesaturn():
+def get_animesaturn(subpath):
     # Define the URL to scrape
-    url = 'https://www.animesaturn.tv/filter'
+    base_url = 'https://www.animesaturn.tv/'
+    full_url = base_url + subpath
 
     # Make an HTTP GET request to fetch the HTML content
-    response = requests.get(url)
+    response = requests.get(full_url)
     anime_data = []
 
     # Check if the request was successful (status code 200)
