@@ -257,7 +257,7 @@ CATEGORIES = [
         'icon': None,
         'fanart': None,
         'main_menu': 'list_serie'
-    }info_tag = list_item.getVideoInfoTag()
+    }
 ]
 
 def get_categories():
