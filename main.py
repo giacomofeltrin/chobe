@@ -256,7 +256,7 @@ def get_avideos(abutton):
         if not query:
             return [] # Return empty list if query is blank
         subpath = "animelist?search=".format(quote(query))
-        videos = create_video_list(subpath)
+        videos = get_animesaturn(subpath)
         return videos
 
 def list_avideos(abutton):
