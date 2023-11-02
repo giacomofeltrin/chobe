@@ -293,7 +293,7 @@ def router(paramstring):
         if params['category_menu'] == 'list_animeita':
             list_animeita()
         else: 
-            raise ValueError(f'Invalid paramstring: {paramstring}!')
+            list_animeita()
     elif params['action'] == 'listing':
         list_videos(int(params['genre_index']))
     elif params['action'] == 'play':
