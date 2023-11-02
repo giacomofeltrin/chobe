@@ -235,7 +235,7 @@ def list_videos(genre_index):
         list_item.setProperty('IsPlayable', 'true')
         # Create a URL for a plugin recursive call.
         # Example: plugin://chobe/?action=play&video=https%3A%2F%2Fia600702.us.archive.org%2F3%2Fitems%2Firon_mask%2Firon_mask_512kb.mp4
-        url = get_url(action='play', video=video['url'])
+        url = get_url(action='play2', video=video['url'])
         # Add the list item to a virtual Kodi folder.
         # is_folder = False means that this item won't open any sub-list.
         is_folder = False
@@ -362,7 +362,7 @@ def router(paramstring):
             list_animeita()
         else: 
             list_animeita()
-    if params['action'] == 'abutton':
+    elif params['action'] == 'abutton':
         list_avideos(params['abutton'])
     elif params['action'] == 'listing':
         list_videos(int(params['genre_index']))
