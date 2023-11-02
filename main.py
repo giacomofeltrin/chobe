@@ -257,7 +257,7 @@ CATEGORIES = [
         'icon': None,
         'fanart': None,
         'main_menu': 'list_serie'
-    }
+    }info_tag = list_item.getVideoInfoTag()
 ]
 
 def get_categories():
@@ -270,10 +270,6 @@ def list_categories():
         list_item = xbmcgui.ListItem(label=category_info['category'])
         # Set images for the list item.
         list_item.setArt({'icon': category_info['icon'], 'fanart': category_info['fanart']})
-        # Set additional info for the list item using its InfoTag.
-        # https://codedocs.xyz/xbmc/xbmc/classXBMCAddon_1_1xbmc_1_1InfoTagVideo.html
-        info_tag.setTitle(category_info['category'])
-        info_tag.setGenre([category_info['category']])
         # Create a URL for a plugin recursive call.
         url = get_url(action='opencategory', category_menu=category_info['main_menu'])
         # is_folder = True means that this item opens a sub-list of lower level items.
