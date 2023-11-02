@@ -1,3 +1,17 @@
+## [0.4.1](https://github.com/giacomofeltrin/chobe/compare/v0.4.0...v0.4.1) (2023-11-02)
+
+
+### Bug Fixes
+
+* add categories ([897eb65](https://github.com/giacomofeltrin/chobe/commit/897eb65d4998e45d9d38a84c5f986ba7db16e6b4))
+* categories menu ([0bfdcf3](https://github.com/giacomofeltrin/chobe/commit/0bfdcf3ebc6805eff91f93da4942ab29016bff86))
+* convert main_menu to string ([f4bdf0d](https://github.com/giacomofeltrin/chobe/commit/f4bdf0dbf50570c5d704bfc776c0db49ad268a12))
+* remove info_tag ([2438fee](https://github.com/giacomofeltrin/chobe/commit/2438fee150be9daee78c0c9190d5527756c68c7f))
+* remove info_tag copypaste ([33a734e](https://github.com/giacomofeltrin/chobe/commit/33a734e5f6629df49fa46ece67b78a6f93cd9e4c))
+* temporary search anime for list_serie ([fbc65a0](https://github.com/giacomofeltrin/chobe/commit/fbc65a01d83bd1f95a0787ca2419d627ad9f21eb))
+
+
+
 # [0.4.0](https://github.com/giacomofeltrin/chobe/compare/v0.3.3...v0.4.0) (2023-11-01)
 
 
