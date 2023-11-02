@@ -7,7 +7,7 @@ import xbmcplugin
 from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
-from animeita import get_animesaturn
+from animeita import get_animesaturn_filter, get_animesaturn_search
 
 # Get the plugin url in plugin:// notation.
 URL = sys.argv[0]
