@@ -18,6 +18,27 @@ ADDON_PATH = translatePath(Addon().getAddonInfo('path'))
 ICONS_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'icons')
 FANART_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'fanart')
 
+def get_user_input():  
+    kb = xbmc.Keyboard('', 'Please enter the video title')
+    kb.doModal() # Onscreen keyboard appears
+    if not kb.isConfirmed():
+        return
+    query = kb.getText() # User input
+    return query
+
+def play_video(path):
+    # Create a playable item with a path to play.
+    play_item = xbmcgui.ListItem(path=path)
+    # Pass the item to the Kodi player.
+    xbmcplugin.setResolvedUrl(_handle, True, listitem=play_item)
+
+"""
+def play_video(path):
+    play_item = xbmcgui.ListItem(offscreen=True)
+    play_item.setPath(path)
+    xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
+"""
+
 VIDEOS = [
     {
         'genre': 'AnimeITA',
@@ -85,7 +106,7 @@ VIDEOS = [
             },
             {
                 'title': 'Steamboat Bill, Jr.',
-                'url': 'https://ia904501.us.archive.org/32/items/SteamboatBillJr/Steamboat_Bill.Jr_512kb.mp4',
+                'url': 'httpssetResolvedUrl://ia904501.us.archive.org/32/items/SteamboatBillJr/Steamboat_Bill.Jr_512kb.mp4',
                 'poster': 'https://publicdomainmovie.net/wikimedia.php?id=Steamboat_bill_poster.jpg',
                 'plot': 'Steamboat Bill, Jr. is the story of a naive, college-educated dandy who must prove himself '
                         'to his working-class father, a hot-headed riverboat captain, while courting the daughter of '
@@ -227,20 +248,48 @@ def list_videos(genre_index):
     xbmcplugin.endOfDirectory(HANDLE)
 
 
-def play_video(path):
-    """
-    Play a video by the provided path.
 
-    :param path: Fully-qualified video URL
-    :type path: str
-    """
-    # Create a playable item with a path to play.
-    # offscreen=True means that the list item is not meant for displaying,
-    # only to pass info to the Kodi player
-    play_item = xbmcgui.ListItem(offscreen=True)
-    play_item.setPath(path)
-    # Pass the item to the Kodi player.
-    xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
+def get_avideos(abutton):
+    if abutton == "Recently Added":
+        url = "http://somewebsite.com/recent/" # Change this to a valid url that you want to scrape
+        videos = create_video_list(url)
+        return videos
+    elif abutton == "Search":
+        query = get_user_input() # User input via onscreen keyboard
+        if not query:
+            return [] # Return empty list if query is blank
+        url = "http://somewebsite.com/results/?query={}".format(quote(query)) # Change this to a valid url for search results that you want to scrape
+        videos = create_video_list(url)
+        return videos
+
+def list_avideos(abutton):
+    # Get the list of videos in the search.
+    videos = get_avideos(abutton)
+    # Iterate through videos.
+    for video in videos:
+        # Create a list item with a text label and a thumbnail image.
+        list_item = xbmcgui.ListItem(label=video['title'])
+        # Set additional info for the list item.
+        list_item.setInfo('url', {'title': video['title'], 'year': video['year'], 'plot': video['plot']})
+        # Set graphics (thumbnail, fanart, banner, poster, landscape etc.) for the list item.
+        # Here we use the same image for all items for simplicity's sake.
+        # In a real-life plugin you need to set each image accordingly.
+        list_item.setArt({'poster': video['poster'], 'icon': video['poster'], 'fanart': video['poster']})
+        # Set 'IsPlayable' property to 'true'.
+        # This is mandatory for playable items!
+        list_item.setProperty('IsPlayable', 'true')
+        # Create a URL for a plugin recursive call.
+        # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
+        url = get_url(action='play', video=video['url'])
+        # Add the list item to a virtual Kodi folder.
+        # is_folder = False means that this item won't open any sub-list.
+        is_folder = False
+        # Add our item to the Kodi virtual folder listing.
+        xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
+    # Add a sort method for the virtual folder items (alphabetically, ignore articles)
+    xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    # Finish creating a virtual folder.
+    xbmcplugin.endOfDirectory(_handle)
 
 ABUTTONS = ["Recently Added", "Search"]
 
