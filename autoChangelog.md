@@ -1,3 +1,27 @@
+# [0.5.0](https://github.com/giacomofeltrin/chobe/compare/v0.4.1...v0.5.0) (2023-11-02)
+
+
+### Bug Fixes
+
+* add first search ([7a2b00f](https://github.com/giacomofeltrin/chobe/commit/7a2b00fb33d91034baa97e51561797b856331e23))
+* add quote ([044f288](https://github.com/giacomofeltrin/chobe/commit/044f288d0096ab1eef25eda1fbef7554799eb3ce))
+* correct get anime function name ([cc5b008](https://github.com/giacomofeltrin/chobe/commit/cc5b008ca9e23a343abff5d34ecd6f27cef38511))
+* correctly pass user input ([41f7b6e](https://github.com/giacomofeltrin/chobe/commit/41f7b6e2c41ebdf4658133510a1683aec9d603b3))
+* first get anime filter ([ac52559](https://github.com/giacomofeltrin/chobe/commit/ac5255951c03eb23966678c2fb07a5ffb75adb51))
+* functions import ([5c49c5f](https://github.com/giacomofeltrin/chobe/commit/5c49c5f9c53ea99927c4724c3925d628c873a0ca))
+* handle without underscore ([349ae43](https://github.com/giacomofeltrin/chobe/commit/349ae4353c892d1198871a863ea1545be3805c97))
+* router abutton action ([2b8c39f](https://github.com/giacomofeltrin/chobe/commit/2b8c39fee0c8eb4d57743d57cc653f5c2da79d1e))
+* separate anime filter and anime search ([27bf7bd](https://github.com/giacomofeltrin/chobe/commit/27bf7bdc23849c8e5ed1cde67b5d24cd4d14df06))
+
+
+### Features
+
+* add animeita menu ([81dc749](https://github.com/giacomofeltrin/chobe/commit/81dc74927564fa03dd53bb9c2a963f0a0e118780))
+* add search anime ([f4ca09c](https://github.com/giacomofeltrin/chobe/commit/f4ca09ceb955daf1ec9cee4a3e48d1c4f3d20fda))
+* setup play video ([141b6a0](https://github.com/giacomofeltrin/chobe/commit/141b6a05d83e91014ffd514061940c9b9e288603))
+
+
+
 ## [0.4.1](https://github.com/giacomofeltrin/chobe/compare/v0.4.0...v0.4.1) (2023-11-02)
 
 
