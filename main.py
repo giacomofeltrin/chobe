@@ -249,14 +249,14 @@ def list_videos(genre_index):
 
 def get_avideos(abutton):
     if abutton == "Recently Added":
-        videos = get_animesaturn('filter?years%5B0%5D=2023')
+        videos = get_animesaturn_filter('filter?years%5B0%5D=2023')
         return videos
     elif abutton == "Search":
         query = get_user_input() # User input via onscreen keyboard
         if not query:
             return [] # Return empty list if query is blank
         subpath = "animelist?search=".format(quote(query))
-        videos = get_animesaturn(subpath)
+        videos = get_animesaturn_search(subpath)
         return videos
 
 def list_avideos(abutton):
