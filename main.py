@@ -1,6 +1,3 @@
-"""
-Video plugin that is compatible with Kodi 20.x "Nexus" and above
-"""
 import os
 import sys
 from urllib.parse import urlencode, parse_qsl
@@ -23,7 +20,7 @@ FANART_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'fanart')
 
 VIDEOS = [
     {
-        'genre': 'Anime',
+        'genre': 'AnimeITA',
         'icon': None,
         'fanart': None,
         'movies': get_animesaturn()
@@ -245,37 +242,60 @@ def play_video(path):
     # Pass the item to the Kodi player.
     xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
 
+def list_animeita():
+    return ""
+
+CATEGORIES = [
+    {
+        'category': 'AnimeITA',
+        'icon': None,
+        'fanart': None,
+        'main_menu': 'list_animeita'
+    },
+    {
+        'category': 'Serie',
+        'icon': None,
+        'fanart': None,
+        'main_menu': 'list_serie'
+    }
+]
+
+def get_categories():
+    return CATEGORIES
+
+def list_categories():
+    categories = get_categories()
+    for index, category_info in enumerate(categories):
+        # Create a list item with a text label.
+        list_item = xbmcgui.ListItem(label=category_info['category'])
+        # Set images for the list item.
+        list_item.setArt({'icon': category_info['icon'], 'fanart': category_info['fanart']})
+        # Create a URL for a plugin recursive call.
+        url = get_url(action='opencategory', category_menu=category_info['main_menu'])
+        # is_folder = True means that this item opens a sub-list of lower level items.
+        is_folder = True
+        # Add our item to the Kodi virtual folder listing.
+        xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
+    # Add sort methods for the virtual folder items
+    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    # Finish creating a virtual folder.
+    xbmcplugin.endOfDirectory(HANDLE)
 
 def router(paramstring):
-    """
-    Router function that calls other functions
-    depending on the provided paramstring
-
-    :param paramstring: URL encoded plugin paramstring
-    :type paramstring: str
-    """
-    # Parse a URL-encoded paramstring to the dictionary of
-    # {<parameter>: <value>} elements
     params = dict(parse_qsl(paramstring))
-    # Check the parameters passed to the plugin
     if not params:
-        # If the plugin is called from Kodi UI without any parameters,
-        # display the list of video categories
-        list_genres()
+        list_categories()
+    elif params['action'] == 'opencategory':
+        if params['category_menu'] == 'list_animeita':
+            list_animeita()
+        else: 
+            list_animeita()
     elif params['action'] == 'listing':
-        # Display the list of videos in a provided category.
         list_videos(int(params['genre_index']))
     elif params['action'] == 'play':
-        # Play a video from a provided URL.
         play_video(params['video'])
     else:
-        # If the provided paramstring does not contain a supported action
-        # we raise an exception. This helps to catch coding errors,
-        # e.g. typos in action names.
         raise ValueError(f'Invalid paramstring: {paramstring}!')
 
-
 if __name__ == '__main__':
-    # Call the router function and pass the plugin call parameters to it.
-    # We use string slicing to trim the leading '?' from the plugin call paramstring
     router(sys.argv[2][1:])
