@@ -255,7 +255,7 @@ def get_avideos(abutton):
         query = get_user_input() # User input via onscreen keyboard
         if not query:
             return [] # Return empty list if query is blank
-        subpath = "animelist?search=".format(quote(query))
+        subpath = "animelist?search={}".format(quote(query))
         videos = get_animesaturn_search(subpath)
         return videos
 
