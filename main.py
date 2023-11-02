@@ -30,7 +30,7 @@ def play_video(path):
     # Create a playable item with a path to play.
     play_item = xbmcgui.ListItem(path=path)
     # Pass the item to the Kodi player.
-    xbmcplugin.setResolvedUrl(_handle, True, listitem=play_item)
+    xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
 
 """
 def play_video(path):
@@ -282,11 +282,11 @@ def list_avideos(abutton):
         # is_folder = False means that this item won't open any sub-list.
         is_folder = False
         # Add our item to the Kodi virtual folder listing.
-        xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
+        xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
     # Add a sort method for the virtual folder items (alphabetically, ignore articles)
-    xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
     # Finish creating a virtual folder.
-    xbmcplugin.endOfDirectory(_handle)
+    xbmcplugin.endOfDirectory(HANDLE)
 
 ABUTTONS = ["Recently Added", "Search"]
 
@@ -311,11 +311,11 @@ def list_animeita():
         # is_folder = True means that this item opens a sub-list of lower level items.
         is_folder = True
         # Add our item to the Kodi virtual folder listing.
-        xbmcplugin.addDirectoryItem(_handle, url, list_item, is_folder)
+        xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
     # Add a sort method for the virtual folder items (alphabetically, ignore articles)
-    xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
     # Finish creating a virtual folder.
-    xbmcplugin.endOfDirectory(_handle)
+    xbmcplugin.endOfDirectory(HANDLE)
 
 CATEGORIES = [
     {
