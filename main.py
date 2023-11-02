@@ -44,7 +44,7 @@ VIDEOS = [
         'genre': 'AnimeITA',
         'icon': None,
         'fanart': None,
-        'movies': get_animesaturn()
+        'movies': get_animesaturn('filter')
     },
     {
         'genre': 'Horror',
