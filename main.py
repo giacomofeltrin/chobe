@@ -250,13 +250,13 @@ CATEGORIES = [
         'category': 'AnimeITA',
         'icon': None,
         'fanart': None,
-        'main_menu': list_animeita
+        'main_menu': 'list_animeita'
     },
     {
         'category': 'Serie',
         'icon': None,
         'fanart': None,
-        'main_menu': list_serie
+        'main_menu': 'list_serie'
     }
 ]
 
