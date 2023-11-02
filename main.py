@@ -1,6 +1,6 @@
 import os
 import sys
-from urllib.parse import urlencode, parse_qsl
+from urllib.parse import urlencode, parse_qsl, quote
 
 import xbmcgui
 import xbmcplugin
