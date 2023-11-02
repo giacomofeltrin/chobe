@@ -242,18 +242,21 @@ def play_video(path):
     # Pass the item to the Kodi player.
     xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
 
+def list_animeita():
+    return ""
+
 CATEGORIES = [
     {
         'category': 'AnimeITA',
         'icon': None,
         'fanart': None,
-        'main_menu': None
+        'main_menu': list_animeita
     },
     {
         'category': 'Serie',
         'icon': None,
         'fanart': None,
-        'main_menu': None
+        'main_menu': list_serie
     }
 ]
 
@@ -261,8 +264,6 @@ def get_categories():
     return CATEGORIES
 
 def list_categories():
-    xbmcplugin.setPluginCategory(HANDLE, 'Categories')
-    xbmcplugin.setContent(HANDLE, 'main_menu')
     categories = get_categories()
     for index, category_info in enumerate(categories):
         # Create a list item with a text label.
@@ -271,12 +272,10 @@ def list_categories():
         list_item.setArt({'icon': category_info['icon'], 'fanart': category_info['fanart']})
         # Set additional info for the list item using its InfoTag.
         # https://codedocs.xyz/xbmc/xbmc/classXBMCAddon_1_1xbmc_1_1InfoTagVideo.html
-        info_tag = list_item.getVideoInfoTag()
-        info_tag.setMediaType('video')
         info_tag.setTitle(category_info['category'])
         info_tag.setGenre([category_info['category']])
         # Create a URL for a plugin recursive call.
-        url = get_url(action='opencategory', category_index=index)
+        url = get_url(action='opencategory', category_menu=category_info['main_menu'])
         # is_folder = True means that this item opens a sub-list of lower level items.
         is_folder = True
         # Add our item to the Kodi virtual folder listing.
@@ -291,14 +290,16 @@ def router(paramstring):
     if not params:
         list_categories()
     elif params['action'] == 'opencategory':
-        list_menus(int(params['category_index']))        
+        if params['category_menu'] == 'list_animeita':
+            list_animeita()
+        else: 
+            raise ValueError(f'Invalid paramstring: {paramstring}!')
     elif params['action'] == 'listing':
         list_videos(int(params['genre_index']))
     elif params['action'] == 'play':
         play_video(params['video'])
     else:
         raise ValueError(f'Invalid paramstring: {paramstring}!')
-
 
 if __name__ == '__main__':
     router(sys.argv[2][1:])
