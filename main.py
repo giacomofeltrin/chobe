@@ -104,7 +104,7 @@ def list_avideos(abutton):
         list_item.setArt({'poster': video['poster'], 'icon': video['poster'], 'fanart': video['poster']})
         # Create a URL for a plugin recursive call.
         # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
-        url = get_url(action='play', video=video['url'])
+        url = get_url(action='getaepisodes', video=video['url'])
         # Add the list item to a virtual Kodi folder.
         is_folder = True
         # Add our item to the Kodi virtual folder listing.
