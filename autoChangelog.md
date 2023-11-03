@@ -1,3 +1,18 @@
+# [0.7.0](https://github.com/giacomofeltrin/chobe/compare/v0.6.0...v0.7.0) (2023-11-03)
+
+
+### Bug Fixes
+
+* avoid too many calls to website ([d71e237](https://github.com/giacomofeltrin/chobe/commit/d71e237ad2fbe7aed7bd10fd8b19f529e19c36f1))
+* restore isPlayable ([2d67b6e](https://github.com/giacomofeltrin/chobe/commit/2d67b6e42d0ddd9f060e4121aaab4b1d41e6db6a))
+
+
+### Features
+
+* automatically zip pack code ([066e4db](https://github.com/giacomofeltrin/chobe/commit/066e4dba39312a793eb77cd1248a832be5c4935e))
+
+
+
 # [0.6.0](https://github.com/giacomofeltrin/chobe/compare/v0.5.0...v0.6.0) (2023-11-03)
 
 
