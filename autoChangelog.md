@@ -1,3 +1,12 @@
+## [0.7.1](https://github.com/giacomofeltrin/chobe/compare/v0.7.0...v0.7.1) (2023-11-03)
+
+
+### Bug Fixes
+
+* extract base_url anime variable ([17feef7](https://github.com/giacomofeltrin/chobe/commit/17feef7d9a09e494a4852e0f80f98a8f6e26bcdc))
+
+
+
 # [0.7.0](https://github.com/giacomofeltrin/chobe/compare/v0.6.0...v0.7.0) (2023-11-03)
 
 
