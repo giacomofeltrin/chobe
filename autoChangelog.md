@@ -1,3 +1,12 @@
+## [0.7.2](https://github.com/giacomofeltrin/chobe/compare/v0.7.1...v0.7.2) (2023-11-03)
+
+
+### Bug Fixes
+
+* add link to generated zip file ([74f053a](https://github.com/giacomofeltrin/chobe/commit/74f053a0b81db585571c658fcec1378196c9b367))
+
+
+
 ## [0.7.1](https://github.com/giacomofeltrin/chobe/compare/v0.7.0...v0.7.1) (2023-11-03)
 
 
