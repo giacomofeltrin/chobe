@@ -103,18 +103,16 @@ def get_animesaturn_episodes(path):
         episodes_buttons = soup.find_all('a', class_='btn btn-dark mb-1 bottone-ep')
 
         for button in episodes_buttons:
-            scheda_url = button['href']
+            episode_url = button['href']
             title = button.get_text(strip=True)
 
             # Extract the episode number from the title
             episode_number = title.strip("Episodio ")
 
-
-
             # Create a dictionary to store the extracted data
             single_data = {
                 "title": title,
-                "url": scheda_url,
+                "url": episode_url,
                 "episode_number": episode_number,
             }
 
@@ -125,8 +123,8 @@ def get_animesaturn_episodes(path):
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
-def get_actual_anime_url(scheda_url):
-    second_response = requests.get(scheda_url)
+def get_actual_anime_url(episode_url):
+    second_response = requests.get(episode_url)
     second_html_content = second_response.text
     second_soup = BeautifulSoup(second_html_content, 'html.parser')
     watch_link = second_soup.find('a', href=lambda href: href and "watch?file" in href)
@@ -138,5 +136,5 @@ def get_actual_anime_url(scheda_url):
     mp4_url = video_source['src']
     return(mp4_url)
 
-
+print(get_actual_anime_url('https://www.animesaturn.tv/ep/Frieren-Beyond-Journeys-End-ITA-a-ep-5'))
 #print(get_animesaturn_episodes('https://www.animesaturn.tv/anime/Dorohedoro-aaaaa'))

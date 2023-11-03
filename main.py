@@ -50,8 +50,8 @@ def play_video(path):
     xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
 """
 
-def play_avideo(scheda_url):
-    path = get_actual_anime_url(scheda_url)
+def play_avideo(episode_url):
+    path = get_actual_anime_url(episode_url)
     # Create a playable item with a path to play.
     play_item = xbmcgui.ListItem(path=path)
     # Pass the item to the Kodi player.
@@ -72,7 +72,7 @@ def list_aepisodes(urlscheda):
         list_item.setInfo('url', {'title': video['title'], 'episode_number': video['episode_number']})
         # Set 'IsPlayable' property to 'true'.
         # This is mandatory for playable items!
-        list_item.setProperty('IsPlayable', 'true')
+       # list_item.setProperty('IsPlayable', 'true')
         # Create a URL for a plugin recursive call.
         # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
         url = get_url(action='aplay', video=video['url'])
