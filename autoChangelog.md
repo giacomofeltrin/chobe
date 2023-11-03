@@ -1,3 +1,18 @@
+# [0.6.0](https://github.com/giacomofeltrin/chobe/compare/v0.5.0...v0.6.0) (2023-11-03)
+
+
+### Bug Fixes
+
+* correct action to get episodes ([6a096e9](https://github.com/giacomofeltrin/chobe/commit/6a096e985c202693d1d938b8f68581c3947834da))
+* restore get_url ([e77c87f](https://github.com/giacomofeltrin/chobe/commit/e77c87fe228fc8c6d74bc14872646f835b4a7442))
+
+
+### Features
+
+* add episodes anime ([0c9a235](https://github.com/giacomofeltrin/chobe/commit/0c9a2350688a447791735c61818c1334c9e41ba8))
+
+
+
 # [0.5.0](https://github.com/giacomofeltrin/chobe/compare/v0.4.1...v0.5.0) (2023-11-02)
 
 
