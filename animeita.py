@@ -86,4 +86,55 @@ def get_animesaturn_search(subpath):
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
-#print(get_animesaturn_search('animelist?search=doro'))
+def get_animesaturn_episodes(path):
+
+    # Make an HTTP GET request to fetch the HTML content
+    response = requests.get(path)
+    episode_data = []
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        html_content = response.text
+
+        # Parse the HTML content with BeautifulSoup
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        # Find and extract the desired information
+        episodes_buttons = soup.find_all('a', class_='btn btn-dark mb-1 bottone-ep')
+
+        for button in episodes_buttons:
+            temp_url = button['href']
+            title = button.get_text(strip=True)
+
+            # Extract the episode number from the title
+            episode_number = title.strip("Episodio ")
+
+            # Get the actual url
+            second_response = requests.get(temp_url)
+            second_html_content = second_response.text
+            second_soup = BeautifulSoup(second_html_content, 'html.parser')
+            watch_link = second_soup.find('a', href=lambda href: href and "watch?file" in href)
+            watch_url = watch_link['href']
+
+            third_response = requests.get(watch_url)
+            third_html_content = third_response.text
+            third_soup = BeautifulSoup(third_html_content, 'html.parser')
+            video_source = third_soup.find('source', type='video/mp4')
+            mp4_url = video_source['src']
+
+
+            # Create a dictionary to store the extracted data
+            single_data = {
+                "title": title,
+                "url": mp4_url,
+                "episode_number": episode_number,
+            }
+
+            episode_data.append(single_data)
+
+        return episode_data
+    else:
+        print(f"Failed to retrieve the page. Status code: {response.status_code}")
+        return None
+
+#print(get_animesaturn_episodes('https://www.animesaturn.tv/anime/Dorohedoro-aaaaa'))
