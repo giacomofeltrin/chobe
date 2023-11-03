@@ -7,7 +7,7 @@ import xbmcplugin
 from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
-from animeita import get_animesaturn_filter, get_animesaturn_search
+from animeita import get_animesaturn_filter, get_animesaturn_search, get_animesaturn_episodes
 
 # Get the plugin url in plugin:// notation.
 URL = sys.argv[0]
@@ -38,6 +38,34 @@ def play_video(path):
     play_item.setPath(path)
     xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
 """
+def get_aepisodes(urlscheda):
+    videos = get_animesaturn_episodes(urlscheda)
+    return videos
+
+def list_aepisodes(urlscheda):
+    # Get the list of videos in the search.
+    videos = get_aepisodes(urlscheda)
+    # Iterate through videos.
+    for video in videos:
+        # Create a list item with a text label and a thumbnail image.
+        list_item = xbmcgui.ListItem(label=video['title'])
+        # Set additional info for the list item.
+        list_item.setInfo('url', {'title': video['title'], 'episode_number': video['episode_number']})
+        # Set 'IsPlayable' property to 'true'.
+        # This is mandatory for playable items!
+        list_item.setProperty('IsPlayable', 'true')
+        # Create a URL for a plugin recursive call.
+        # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
+        url = get_url(action='play', video=video['url'])
+        # Add the list item to a virtual Kodi folder.
+        # is_folder = False means that this item won't open any sub-list.
+        is_folder = False
+        # Add our item to the Kodi virtual folder listing.
+        xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
+    # Add a sort method for the virtual folder items (alphabetically, ignore articles)
+    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    # Finish creating a virtual folder.
+    xbmcplugin.endOfDirectory(HANDLE)
 
 def get_avideos(abutton):
     if abutton == "Recently Added":
@@ -64,15 +92,11 @@ def list_avideos(abutton):
         # Here we use the same image for all items for simplicity's sake.
         # In a real-life plugin you need to set each image accordingly.
         list_item.setArt({'poster': video['poster'], 'icon': video['poster'], 'fanart': video['poster']})
-        # Set 'IsPlayable' property to 'true'.
-        # This is mandatory for playable items!
-        list_item.setProperty('IsPlayable', 'true')
         # Create a URL for a plugin recursive call.
         # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
         url = get_url(action='play', video=video['url'])
         # Add the list item to a virtual Kodi folder.
-        # is_folder = False means that this item won't open any sub-list.
-        is_folder = False
+        is_folder = True
         # Add our item to the Kodi virtual folder listing.
         xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
     # Add a sort method for the virtual folder items (alphabetically, ignore articles)
@@ -156,6 +180,8 @@ def router(paramstring):
             list_animeita()
     elif params['action'] == 'abutton':
         list_avideos(params['abutton'])
+    elif params['action'] == 'getaepisodes':
+        list_aepisodes(params['video'])
     elif params['action'] == 'play':
         play_video(params['video'])
     else:
