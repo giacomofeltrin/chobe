@@ -2,9 +2,10 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
+base_url = 'https://www.animesaturn.tv/'
+
 def get_animesaturn_filter(subpath):
     # Define the URL to scrape
-    base_url = 'https://www.animesaturn.tv/'
     full_url = base_url + subpath
 
     # Make an HTTP GET request to fetch the HTML content
@@ -45,7 +46,6 @@ def get_animesaturn_filter(subpath):
     
 def get_animesaturn_search(subpath):
     # Define the URL to scrape
-    base_url = 'https://www.animesaturn.tv/'
     full_url = base_url + subpath
 
 
@@ -136,5 +136,5 @@ def get_actual_anime_url(episode_url):
     mp4_url = video_source['src']
     return(mp4_url)
 
-print(get_actual_anime_url('https://www.animesaturn.tv/ep/Frieren-Beyond-Journeys-End-ITA-a-ep-5'))
+#print(get_actual_anime_url('https://www.animesaturn.tv/ep/Frieren-Beyond-Journeys-End-ITA-a-ep-5'))
 #print(get_animesaturn_episodes('https://www.animesaturn.tv/anime/Dorohedoro-aaaaa'))
