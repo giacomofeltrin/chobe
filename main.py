@@ -18,6 +18,16 @@ ADDON_PATH = translatePath(Addon().getAddonInfo('path'))
 ICONS_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'icons')
 FANART_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'fanart')
 
+def get_url(**kwargs):
+    """
+    Create a URL for calling the plugin recursively from the given set of keyword arguments.
+
+    :param kwargs: "argument=value" pairs
+    :return: plugin call URL
+    :rtype: str
+    """
+    return '{}?{}'.format(URL, urlencode(kwargs))
+
 def get_user_input():  
     kb = xbmc.Keyboard('', 'Please enter the video title')
     kb.doModal() # Onscreen keyboard appears
