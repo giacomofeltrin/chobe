@@ -1,3 +1,21 @@
+## [0.8.2](https://github.com/giacomofeltrin/chobe/compare/v0.8.1...v0.8.2) (2023-11-04)
+
+
+### Bug Fixes
+
+* restore chobe zip to save conflict ([334e0d6](https://github.com/giacomofeltrin/chobe/commit/334e0d6b5154858d932e9690a5d8962138d900ce))
+
+
+
+## [0.8.1](https://github.com/giacomofeltrin/chobe/compare/v0.8.0...v0.8.1) (2023-11-04)
+
+
+### Bug Fixes
+
+* add files and modify structure to generate zip ([95fe256](https://github.com/giacomofeltrin/chobe/commit/95fe2569e40d968ff735a87d3bb9051621188a90))
+
+
+
 # [0.8.0](https://github.com/giacomofeltrin/chobe/compare/v0.7.3...v0.8.0) (2023-11-04)
 
 
