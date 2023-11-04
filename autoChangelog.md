@@ -1,3 +1,12 @@
+## [0.7.3](https://github.com/giacomofeltrin/chobe/compare/v0.7.2...v0.7.3) (2023-11-04)
+
+
+### Bug Fixes
+
+* readme as strings ([941f773](https://github.com/giacomofeltrin/chobe/commit/941f7739e5b02a1c68c2831466b00fee2bf7bfdf))
+
+
+
 ## [0.7.2](https://github.com/giacomofeltrin/chobe/compare/v0.7.1...v0.7.2) (2023-11-03)
 
 
