@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/giacomofeltrin/chobe/compare/v0.7.3...v0.8.0) (2023-11-04)
+
+
+### Features
+
+* restore readme and add index.html file ([50ca2c8](https://github.com/giacomofeltrin/chobe/commit/50ca2c8a71ae7039a9a6febc178bd341ad0f61bb))
+
+
+
 ## [0.7.3](https://github.com/giacomofeltrin/chobe/compare/v0.7.2...v0.7.3) (2023-11-04)
 
 
