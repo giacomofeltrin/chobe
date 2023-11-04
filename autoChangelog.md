@@ -1,3 +1,12 @@
+## [0.8.3](https://github.com/giacomofeltrin/chobe/compare/v0.8.2...v0.8.3) (2023-11-04)
+
+
+### Bug Fixes
+
+* regenerate double zip files ([67c1470](https://github.com/giacomofeltrin/chobe/commit/67c14708305a44b76f2981e7b9ddbe7c72c96ae2))
+
+
+
 ## [0.8.2](https://github.com/giacomofeltrin/chobe/compare/v0.8.1...v0.8.2) (2023-11-04)
 
 
