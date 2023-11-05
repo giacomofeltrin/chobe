@@ -1,3 +1,12 @@
+## [0.8.4](https://github.com/giacomofeltrin/chobe/compare/v0.8.3...v0.8.4) (2023-11-05)
+
+
+### Bug Fixes
+
+* add blank line at bottom of html file ([cd9f723](https://github.com/giacomofeltrin/chobe/commit/cd9f723d7980260785e8ff35ebf77013f2df7710))
+
+
+
 ## [0.8.3](https://github.com/giacomofeltrin/chobe/compare/v0.8.2...v0.8.3) (2023-11-04)
 
 
