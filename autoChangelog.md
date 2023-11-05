@@ -1,3 +1,12 @@
+## [0.8.5](https://github.com/giacomofeltrin/chobe/compare/v0.8.4...v0.8.5) (2023-11-05)
+
+
+### Bug Fixes
+
+* move main py file ([6f7753e](https://github.com/giacomofeltrin/chobe/commit/6f7753e8038cee5d9ff2224de7838c0e4841adf5))
+
+
+
 ## [0.8.4](https://github.com/giacomofeltrin/chobe/compare/v0.8.3...v0.8.4) (2023-11-05)
 
 
