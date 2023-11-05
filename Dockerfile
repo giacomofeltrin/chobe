@@ -5,8 +5,8 @@ LABEL maintainer="feltrin.gi@gmail.com"
 
 WORKDIR /usr/src/app
 
-COPY animeita.py ./
-COPY resources ./
+COPY /kodi20/chobe/animeita.py ./
+COPY /kodi20/chobe/resources ./
 #COPY requirements.txt
 #RUN pip install -r requirements.txt
 RUN pip install requests
