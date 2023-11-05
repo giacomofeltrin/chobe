@@ -1,3 +1,12 @@
+## [0.8.6](https://github.com/giacomofeltrin/chobe/compare/v0.8.5...v0.8.6) (2023-11-05)
+
+
+### Bug Fixes
+
+* scrape m3u8 ([12983ab](https://github.com/giacomofeltrin/chobe/commit/12983ab99859b87d66d6edc1aacbc848c496da37))
+
+
+
 ## [0.8.5](https://github.com/giacomofeltrin/chobe/compare/v0.8.4...v0.8.5) (2023-11-05)
 
 
