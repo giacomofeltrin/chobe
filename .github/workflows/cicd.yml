@@ -3,12 +3,12 @@ name: CICD
 on:
   push:
     branches: [ "main" ]
-
+    paths-ignore:
+      - '**.zip'
   workflow_dispatch:
 
 jobs:
   cicd:
-    if: github.actor != 'CICD'
     runs-on: ubuntu-latest
 
     steps:
