@@ -1,4 +1,5 @@
 import requests
+import re
 import json
 from bs4 import BeautifulSoup
 
@@ -123,6 +124,31 @@ def get_animesaturn_episodes(path):
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
+def scrape_m3u8_url(watch_url):
+    response = requests.get(watch_url)
+    html_content = response.text
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Find all script tags
+    script_tags = soup.find_all('script')
+
+    for script_tag in script_tags:
+        # Extract the content of the script tag
+        script_content = script_tag.string
+
+        if script_content:
+            # Check if "jwplayer" is present in the script content
+            if 'jwplayer' in script_content:
+                # Use regular expression to find the M3U8 URL
+                m3u8_url_match = re.search(r'file:\s*"(https://[^"]+\.m3u8)"', script_content)
+                
+                if m3u8_url_match:
+                    m3u8_url = m3u8_url_match.group(1)
+                    return m3u8_url
+
+    return None
+
+
 def get_actual_anime_url(episode_url):
     second_response = requests.get(episode_url)
     second_html_content = second_response.text
@@ -133,8 +159,14 @@ def get_actual_anime_url(episode_url):
     third_html_content = third_response.text
     third_soup = BeautifulSoup(third_html_content, 'html.parser')
     video_source = third_soup.find('source', type='video/mp4')
-    mp4_url = video_source['src']
-    return(mp4_url)
+    
+    if video_source:
+        video_url = video_source['src']
+    else:
+        # If 'video_source' is None, try scraping the M3U8 URL
+        video_url = scrape_m3u8_url(watch_url)
+    return(video_url)
 
-#print(get_actual_anime_url('https://www.animesaturn.tv/ep/Frieren-Beyond-Journeys-End-ITA-a-ep-5'))
+print(get_actual_anime_url('https://www.animesaturn.tv/ep/Boku-no-Hero-Academia-5-ITA-ep-5'))
+print(get_actual_anime_url('https://www.animesaturn.tv/ep/Frieren-Beyond-Journeys-End-ep-1'))
 #print(get_animesaturn_episodes('https://www.animesaturn.tv/anime/Dorohedoro-aaaaa'))

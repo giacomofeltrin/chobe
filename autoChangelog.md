@@ -1,3 +1,26 @@
+# [0.9.0](https://github.com/giacomofeltrin/chobe/compare/v0.8.6...v0.9.0) (2023-11-07)
+
+
+### Bug Fixes
+
+* avoid multiple triggers ([2a7484c](https://github.com/giacomofeltrin/chobe/commit/2a7484c52f4c516983cf5985b8753985c5ef6320))
+
+
+### Features
+
+* add basic cicd pipe ([1cc11e4](https://github.com/giacomofeltrin/chobe/commit/1cc11e45f2db1a0094ddde177f308fb74bcb0e7d))
+
+
+
+## [0.8.6](https://github.com/giacomofeltrin/chobe/compare/v0.8.5...v0.8.6) (2023-11-05)
+
+
+### Bug Fixes
+
+* scrape m3u8 ([12983ab](https://github.com/giacomofeltrin/chobe/commit/12983ab99859b87d66d6edc1aacbc848c496da37))
+
+
+
 ## [0.8.5](https://github.com/giacomofeltrin/chobe/compare/v0.8.4...v0.8.5) (2023-11-05)
 
 
