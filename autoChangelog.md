@@ -1,3 +1,12 @@
+## [0.9.1](https://github.com/giacomofeltrin/chobe/compare/v0.9.0...v0.9.1) (2023-11-07)
+
+
+### Bug Fixes
+
+* add 'requests' dependecy ([01d429e](https://github.com/giacomofeltrin/chobe/commit/01d429ed94a5329bb5357936ae5d5b11e8ce487d))
+
+
+
 # [0.9.0](https://github.com/giacomofeltrin/chobe/compare/v0.8.6...v0.9.0) (2023-11-07)
 
 
