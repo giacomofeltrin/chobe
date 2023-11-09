@@ -1,3 +1,12 @@
+## [0.9.3](https://github.com/giacomofeltrin/chobe/compare/v0.9.2...v0.9.3) (2023-11-09)
+
+
+### Bug Fixes
+
+* path to generated zip ([334d377](https://github.com/giacomofeltrin/chobe/commit/334d377de0248d415de67192515f6add7cee9ed8))
+
+
+
 ## [0.9.2](https://github.com/giacomofeltrin/chobe/compare/v0.9.1...v0.9.2) (2023-11-09)
 
 
