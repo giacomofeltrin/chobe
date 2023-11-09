@@ -1,3 +1,12 @@
+## [0.9.2](https://github.com/giacomofeltrin/chobe/compare/v0.9.1...v0.9.2) (2023-11-09)
+
+
+### Bug Fixes
+
+* reduce directory layers ([aa1b26d](https://github.com/giacomofeltrin/chobe/commit/aa1b26d9ae4a174992ade347b34af500a2eea8fc))
+
+
+
 ## [0.9.1](https://github.com/giacomofeltrin/chobe/compare/v0.9.0...v0.9.1) (2023-11-07)
 
 
