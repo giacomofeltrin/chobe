@@ -15,8 +15,8 @@ URL = sys.argv[0]
 HANDLE = int(sys.argv[1])
 # Get addon base path
 ADDON_PATH = translatePath(Addon().getAddonInfo('path'))
-ICONS_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'icons')
-FANART_DIR = os.path.join(ADDON_PATH, 'resources', 'images', 'fanart')
+ICONS_DIR = os.path.join(ADDON_PATH, 'icons')
+FANART_DIR = os.path.join(ADDON_PATH, 'fanart')
 
 def get_url(**kwargs):
     """
