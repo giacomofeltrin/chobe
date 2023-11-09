@@ -1,3 +1,35 @@
+## [0.9.2](https://github.com/giacomofeltrin/chobe/compare/v0.9.1...v0.9.2) (2023-11-09)
+
+
+### Bug Fixes
+
+* reduce directory layers ([aa1b26d](https://github.com/giacomofeltrin/chobe/commit/aa1b26d9ae4a174992ade347b34af500a2eea8fc))
+
+
+
+## [0.9.1](https://github.com/giacomofeltrin/chobe/compare/v0.9.0...v0.9.1) (2023-11-07)
+
+
+### Bug Fixes
+
+* add 'requests' dependecy ([01d429e](https://github.com/giacomofeltrin/chobe/commit/01d429ed94a5329bb5357936ae5d5b11e8ce487d))
+
+
+
+# [0.9.0](https://github.com/giacomofeltrin/chobe/compare/v0.8.6...v0.9.0) (2023-11-07)
+
+
+### Bug Fixes
+
+* avoid multiple triggers ([2a7484c](https://github.com/giacomofeltrin/chobe/commit/2a7484c52f4c516983cf5985b8753985c5ef6320))
+
+
+### Features
+
+* add basic cicd pipe ([1cc11e4](https://github.com/giacomofeltrin/chobe/commit/1cc11e45f2db1a0094ddde177f308fb74bcb0e7d))
+
+
+
 ## [0.8.6](https://github.com/giacomofeltrin/chobe/compare/v0.8.5...v0.8.6) (2023-11-05)
 
 
