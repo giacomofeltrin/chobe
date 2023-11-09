@@ -201,7 +201,7 @@ class Generator:
         Creates a zip file in the zips directory for the given addon.
         """
         addon_folder = os.path.join(self.release_path, folder)
-        zip_folder = os.path.join(self.zips_path, addon_id)
+        zip_folder = self.zips_path
         if not os.path.exists(zip_folder):
             os.makedirs(zip_folder)
 
@@ -230,7 +230,7 @@ class Generator:
                 for f in files:
                     fullpath = os.path.join(root, f)
                     archive_name = os.path.join(archive_root, f)
-                    zip.write(fullpath, archive_name, zipfile.ZIP_DEFLATED)
+                    zip.write(fullpath, os.path.basename(archive_name), zipfile.ZIP_DEFLATED)
 
             zip.close()
             size = convert_bytes(os.path.getsize(final_zip))
