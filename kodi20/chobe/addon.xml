@@ -21,10 +21,10 @@
     <disclaimer lang="en_GB">All sources videos are provided by their respective websites.</disclaimer>
     <license>GPL-3.0-only</license>
     <assets>
-      <icon>icon.png</icon>
-      <fanart>fanart.jpg</fanart>
-      <screenshot>screenshot-1.jpg</screenshot>
-      <screenshot>screenshot-2.jpg</screenshot>
+      <icon>resources/images/icon.png</icon>
+      <fanart>resources/images/fanart.jpg</fanart>
+      <screenshot>resources/images/screenshot-1.jpg</screenshot>
+      <screenshot>resources/images/screenshot-2.jpg</screenshot>
     </assets>
     <news>News placeholder</news>
   </extension>

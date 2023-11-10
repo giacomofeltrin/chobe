@@ -1,3 +1,13 @@
+## [0.9.4](https://github.com/giacomofeltrin/chobe/compare/v0.9.3...v0.9.4) (2023-11-10)
+
+
+### Bug Fixes
+
+* restore resources paths ([531424a](https://github.com/giacomofeltrin/chobe/commit/531424a1ba55594ee3196f89de0bc7a48d86a6d2))
+* zip generator doesn't include root directory ([0d9af16](https://github.com/giacomofeltrin/chobe/commit/0d9af166822058980aea4ad82124a34f709dd228))
+
+
+
 ## [0.9.3](https://github.com/giacomofeltrin/chobe/compare/v0.9.2...v0.9.3) (2023-11-09)
 
 
