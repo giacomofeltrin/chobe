@@ -1,3 +1,12 @@
+## [0.9.5](https://github.com/giacomofeltrin/chobe/compare/v0.9.4...v0.9.5) (2023-11-10)
+
+
+### Bug Fixes
+
+* remove print from animeita.py ([c72cb22](https://github.com/giacomofeltrin/chobe/commit/c72cb225cbb363f0d6067efc1993032d9742d954))
+
+
+
 ## [0.9.4](https://github.com/giacomofeltrin/chobe/compare/v0.9.3...v0.9.4) (2023-11-10)
 
 
