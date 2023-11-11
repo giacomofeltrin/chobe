@@ -1,3 +1,12 @@
+## [0.9.7](https://github.com/giacomofeltrin/chobe/compare/v0.9.6...v0.9.7) (2023-11-11)
+
+
+### Bug Fixes
+
+* **cd:** restore first zip path ([272ce26](https://github.com/giacomofeltrin/chobe/commit/272ce26505277bc04cfaa160cc05b85735952867))
+
+
+
 ## [0.9.6](https://github.com/giacomofeltrin/chobe/compare/v0.9.5...v0.9.6) (2023-11-11)
 
 
