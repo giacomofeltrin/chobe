@@ -197,16 +197,19 @@ class Generator:
                         )
 
     def _create_zip(self, folder, addon_id, version):
+        """
+        Creates a zip file in the zips directory for the given addon.
+        """
         addon_folder = os.path.join(self.release_path, folder)
-        zip_folder = self.zips_path
+        zip_folder = os.path.join(self.zips_path, addon_id)
         if not os.path.exists(zip_folder):
             os.makedirs(zip_folder)
-    
+
         final_zip = os.path.join(zip_folder, "{0}-{1}.zip".format(addon_id, version))
         if not os.path.exists(final_zip):
             zip = zipfile.ZipFile(final_zip, "w", compression=zipfile.ZIP_DEFLATED)
             root_len = len(os.path.dirname(os.path.abspath(addon_folder)))
-    
+
             for root, dirs, files in os.walk(addon_folder):
                 # remove any unneeded artifacts
                 for i in IGNORE:
@@ -221,14 +224,14 @@ class Generator:
                                 files.remove(f)
                             except:
                                 pass
-    
+
                 archive_root = os.path.abspath(root)[root_len:]
-    
+
                 for f in files:
                     fullpath = os.path.join(root, f)
-                    archive_name = os.path.relpath(fullpath, addon_folder)
+                    archive_name = os.path.join(archive_root, f)
                     zip.write(fullpath, archive_name, zipfile.ZIP_DEFLATED)
-    
+
             zip.close()
             size = convert_bytes(os.path.getsize(final_zip))
             print(
@@ -238,7 +241,6 @@ class Generator:
                     color_text(size, 'yellow'),
                 )
             )
-
 
     def _copy_meta_files(self, addon_id, addon_folder):
         """

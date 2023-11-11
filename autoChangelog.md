@@ -1,3 +1,12 @@
+## [0.9.6](https://github.com/giacomofeltrin/chobe/compare/v0.9.5...v0.9.6) (2023-11-11)
+
+
+### Bug Fixes
+
+* restore first layer directory ([9831562](https://github.com/giacomofeltrin/chobe/commit/9831562480a2c773cf1fc8ba63ee68d9fface48c))
+
+
+
 ## [0.9.5](https://github.com/giacomofeltrin/chobe/compare/v0.9.4...v0.9.5) (2023-11-10)
 
 
