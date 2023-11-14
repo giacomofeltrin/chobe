@@ -36,8 +36,16 @@ def get_user_input():
     query = kb.getText() # User input
     return query
 
+def get_user_input_number():  
+    kb = xbmc.Keyboard('', 'Please enter page number from 1 to ~23')
+    kb.doModal() # Onscreen keyboard appears
+    if not kb.isConfirmed():
+        return
+    query = kb.getText() # User input
+    return query
+
 """
-Two styles of play video
+# Two styles of play video
 def play_video(path):
     # Create a playable item with a path to play.
     play_item = xbmcgui.ListItem(path=path)
@@ -97,6 +105,12 @@ def get_avideos(abutton):
         subpath = "animelist?search={}".format(quote(query))
         videos = get_animesaturn_search(subpath)
         return videos
+    elif abutton == "Dub ITA":
+        query = get_user_input_number() # User input for page number
+        if not query:
+            return [] # Return empty list if query is blank
+        videos = get_animesaturn_filter('filter?language%5B0%5D=1&page={}#pagination').format(quote(query))
+        return videos
 
 def list_avideos(abutton):
     # Get the list of videos in the search.
@@ -123,7 +137,7 @@ def list_avideos(abutton):
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(HANDLE)
 
-ABUTTONS = ["Recently Added", "Search"]
+ABUTTONS = [ "Search", "Recently Added", "Dub ITA" ]
 
 def get_abuttons():
     return ABUTTONS
