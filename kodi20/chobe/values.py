@@ -1,0 +1,1 @@
+baseurl_animeita = 'https://www.animesaturn.tv/'
