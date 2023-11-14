@@ -1,3 +1,12 @@
+# [0.10.0](https://github.com/giacomofeltrin/chobe/compare/v0.9.7...v0.10.0) (2023-11-14)
+
+
+### Features
+
+* add basic page number search for dub ita anime ([f9e6aad](https://github.com/giacomofeltrin/chobe/commit/f9e6aad8c7a5465b2ff0642a6396ae1baf1b98d1))
+
+
+
 ## [0.9.7](https://github.com/giacomofeltrin/chobe/compare/v0.9.6...v0.9.7) (2023-11-11)
 
 
