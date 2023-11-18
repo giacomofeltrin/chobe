@@ -1,3 +1,12 @@
+## [0.10.1](https://github.com/giacomofeltrin/chobe/compare/v0.10.0...v0.10.1) (2023-11-18)
+
+
+### Bug Fixes
+
+* dubbed page search ([9aaac79](https://github.com/giacomofeltrin/chobe/commit/9aaac794bb93819ddf2f1737b4592b623ed60f0d))
+
+
+
 # [0.10.0](https://github.com/giacomofeltrin/chobe/compare/v0.9.7...v0.10.0) (2023-11-14)
 
 
