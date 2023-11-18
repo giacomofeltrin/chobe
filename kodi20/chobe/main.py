@@ -109,7 +109,8 @@ def get_avideos(abutton):
         query = get_user_input_number() # User input for page number
         if not query:
             return [] # Return empty list if query is blank
-        videos = get_animesaturn_filter('filter?language%5B0%5D=1&page={}#pagination').format(quote(query))
+        subpath = "filter?language%5B0%5D=1&page={}#pagination".format(quote(query))
+        videos = get_animesaturn_filter(subpath)
         return videos
 
 def list_avideos(abutton):
