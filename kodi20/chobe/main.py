@@ -8,7 +8,7 @@ from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
 from animeita import get_animesaturn_filter, get_animesaturn_search, get_animesaturn_episodes, get_actual_anime_url
-from serie import get_cb01_search
+from serie import get_cb01_search, get_cb01_episodes
 
 # Get the plugin url in plugin:// notation.
 URL = sys.argv[0]
@@ -105,7 +105,7 @@ def list_aepisodes(urlscheda):
 
 #TODO
 def get_sepisodes(urlscheda):
-    videos = get_animesaturn_episodes(urlscheda)
+    videos = get_cb01_episodes(urlscheda)
     return videos
 
 def list_sepisodes(urlscheda):
@@ -177,7 +177,6 @@ def list_avideos(abutton):
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(HANDLE)
 
-#TODO
 def get_svideos(sbutton):
     if sbutton == "Search Movie":
         query = get_user_input() # User input via onscreen keyboard
