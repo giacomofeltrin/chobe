@@ -12,7 +12,7 @@ def get_cb01_search(subpath):
 
     # Make an HTTP GET request to fetch the HTML content
     response = requests.get(full_url)
-    anime_data = []
+    serie_data = []
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
@@ -46,77 +46,49 @@ def get_cb01_search(subpath):
                     "year": 2023  # You can change the year value as needed
                 }
 
-                anime_data.append(single_data)
+                serie_data.append(single_data)
             else:
                 print(f"No title link found in card-content div.")
 
-        return anime_data
+        return serie_data
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
 
-def get_animesaturn_episodes(path):
-
-    # Make an HTTP GET request to fetch the HTML content
+def get_cb01_episodes(path):
     response = requests.get(path)
     episode_data = []
 
-    # Check if the request was successful (status code 200)
     if response.status_code == 200:
         html_content = response.text
-
-        # Parse the HTML content with BeautifulSoup
         soup = BeautifulSoup(html_content, 'html.parser')
 
-        # Find and extract the desired information
-        episodes_buttons = soup.find_all('a', class_='btn btn-dark mb-1 bottone-ep')
+        # Find the div containing all the season information
+        season_divs = soup.find_all('div', class_='sp-wrap sp-wrap-default')
 
-        for button in episodes_buttons:
-            episode_url = button['href']
-            title = button.get_text(strip=True)
+        current_season = "Unknown Season"
 
-            # Extract the episode number from the title
-            episode_number = title.strip("Episodio ")
-
-            # Create a dictionary to store the extracted data
-            single_data = {
-                "title": title,
-                "url": episode_url,
-                "episode_number": episode_number,
-            }
-
-            episode_data.append(single_data)
-
-        return episode_data
+        # Iterate over each season
+        for season_div in season_divs:
+            current_season = season_div.find("div", class_="sp-head").text.strip()
+            for episode in season_div.find_all("p"):
+                episode_text = episode.text.strip()
+                if episode_text:
+                    links = [a["href"] for a in episode.find_all("a", href=True)]
+                    for l in links:
+                        
+                        single_data = {
+                                "title": episode_text + l,
+                                "url": l,
+                                "season_number": current_season,
+                            }
+                        print(single_data)
+                        episode_data.append(single_data)
+                        return episode_data
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
-
-def scrape_m3u8_url(watch_url):
-    response = requests.get(watch_url)
-    html_content = response.text
-    soup = BeautifulSoup(html_content, 'html.parser')
-
-    # Find all script tags
-    script_tags = soup.find_all('script')
-
-    for script_tag in script_tags:
-        # Extract the content of the script tag
-        script_content = script_tag.string
-
-        if script_content:
-            # Check if "jwplayer" is present in the script content
-            if 'jwplayer' in script_content:
-                # Use regular expression to find the M3U8 URL
-                m3u8_url_match = re.search(r'file:\s*"(https://[^"]+\.m3u8)"', script_content)
-                
-                if m3u8_url_match:
-                    m3u8_url = m3u8_url_match.group(1)
-                    return m3u8_url
-
-    return None
-
 
 def get_actual_anime_url(episode_url):
     second_response = requests.get(episode_url)
@@ -139,4 +111,4 @@ def get_actual_anime_url(episode_url):
 #print(get_actual_anime_url('https://www.animesaturn.tv/ep/Boku-no-Hero-Academia-5-ITA-ep-5'))
 #print(get_actual_anime_url('https://www.animesaturn.tv/ep/Frieren-Beyond-Journeys-End-ep-1'))
 #print(get_animesaturn_episodes('https://www.animesaturn.tv/anime/Dorohedoro-aaaaa'))
-print(get_cb01_search('serietv/?s=natale'))
+print(get_cb01_episodes('https://cb01.claims/serietv/manifest/'))
