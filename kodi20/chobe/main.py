@@ -8,7 +8,7 @@ from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
 from animeita import get_animesaturn_filter, get_animesaturn_search, get_animesaturn_episodes, get_actual_anime_url
-from serie import get_cb01_search, get_cb01_episodes
+from serie import get_cb01_search, get_cb01_episodes, get_actual_serie_url
 
 # Get the plugin url in plugin:// notation.
 URL = sys.argv[0]
@@ -66,9 +66,8 @@ def play_avideo(episode_url):
     # Pass the item to the Kodi player.
     xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
 
-#TODO
 def play_svideo(episode_url):
-    path = get_actual_anime_url(episode_url)
+    path = get_actual_serie_url(episode_url)
     # Create a playable item with a path to play.
     play_item = xbmcgui.ListItem(path=path)
     # Pass the item to the Kodi player.
@@ -103,7 +102,6 @@ def list_aepisodes(urlscheda):
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(HANDLE)
 
-#TODO
 def get_sepisodes(urlscheda):
     videos = get_cb01_episodes(urlscheda)
     return videos
@@ -122,7 +120,7 @@ def list_sepisodes(urlscheda):
         list_item.setProperty('IsPlayable', 'true')
         # Create a URL for a plugin recursive call.
         # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
-        url = get_url(action='aplay', video=video['url'])
+        url = get_url(action='splay', video=video['url'])
         # Add the list item to a virtual Kodi folder.
         # is_folder = False means that this item won't open any sub-list.
         is_folder = False

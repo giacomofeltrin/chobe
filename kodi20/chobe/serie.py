@@ -77,20 +77,42 @@ def get_cb01_episodes(path):
                 if episode_text:
                     links = [a["href"] for a in episode.find_all("a", href=True)]
                     for l in links:
-                        
-                        single_data = {
-                                "title": episode_text + l,
-                                "url": l,
-                                "season_number": current_season,
-                            }
-                        print(single_data)
-                        episode_data.append(single_data)
-                        return episode_data
+                        # Return the link immediatly if "stayonline" otherwise explore subfolder
+                        if "stayonline" in l:
+                            single_data = {
+                                    "title": episode_text + l,
+                                    "url": l,
+                                    "season_number": current_season,
+                                }
+                            episode_data.append(single_data)
+                        else:
+                            print(l)
+                            response_internal = requests.get(l)
+                            if response_internal.status_code == 200:
+                                html_content = response_internal.text
+                                soup = BeautifulSoup(html_content, 'html.parser')
+                                for row in soup.find_all('tr'):
+                                    columns = row.find_all('td')
+                                    if len(columns) >= 3:
+                                        episode_text = columns[0].text.strip()
+                                        link = columns[1].find('a')['href']
+                                        single_data = {
+                                            "title": episode_text,
+                                            "url": link,
+                                            "season_number": current_season,
+                                        }
+                                        episode_data.append(single_data)
+
+
+
+
+
+        return episode_data
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
-def get_actual_anime_url(episode_url):
+def get_actual_serie_url(episode_url):
     second_response = requests.get(episode_url)
     second_html_content = second_response.text
     second_soup = BeautifulSoup(second_html_content, 'html.parser')
