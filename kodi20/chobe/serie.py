@@ -6,6 +6,22 @@ from values import baseurl_serie
 
 base_url = baseurl_serie
 
+def get_streamingcommunity_json_page_data(page_url):
+    response = requests.get(page_url)
+    if response.status_code == 200:
+        html_content = response.text
+        soup = BeautifulSoup(html_content, 'html.parser')
+
+        app_element = soup.find('div', {'id': 'app'})
+        if app_element:
+            data_page_value = app_element.get('data-page')
+            data_page_json = data_page_value.replace('&quot;', '"')
+            serie_data = json.loads(data_page_json)
+            return serie_data
+    else:
+        print(f"Failed to retrieve the page. Status code: {response.status_code}")
+        return None
+
 def get_streamingcommunity_search(subpath):
 
     full_url = base_url + subpath
@@ -32,7 +48,7 @@ def get_streamingcommunity_search(subpath):
 
             for title in titles:
                 name = title['name']
-                url = base_url + "titles/" + str(title['id'])
+                url = base_url + "titles/" + str(title['id']) + "-" + str(title['slug'])
                 trimmed_url = baseurl_serie[8:]
                 image_url = "https://cdn." + trimmed_url + "images/" + title['images'][0]['filename']
                 plot = title['name']
@@ -51,54 +67,36 @@ def get_streamingcommunity_search(subpath):
         return None
 
 def get_streamingcommunity_episodes(path):
-    response = requests.get(path)
     episode_data = []
+    serie_data = get_streamingcommunity_json_page_data(path)
 
-    if response.status_code == 200:
-        html_content = response.text
-        soup = BeautifulSoup(html_content, 'html.parser')
-
-        # Find the div containing all the season information
-        season_divs = soup.find_all('div', class_='sp-wrap sp-wrap-default')
-
-        current_season = "Unknown Season"
-
-        # Iterate over each season
-        for season_div in season_divs:
-            current_season = season_div.find("div", class_="sp-head").text.strip()
-            for episode in season_div.find_all("p"):
-                episode_text = episode.text.strip()
-                if episode_text:
-                    links = [a["href"] for a in episode.find_all("a", href=True)]
-                    for l in links:
-                        # Return the link immediatly if "stayonline" otherwise explore subfolder
-                        if "stayonline" in l:
-                            single_data = {
-                                    "title": episode_text + l,
-                                    "url": l,
-                                    "season_number": current_season,
-                                }
-                            episode_data.append(single_data)
-                        else:
-                            response_internal = requests.get(l)
-                            if response_internal.status_code == 200:
-                                html_content = response_internal.text
-                                soup = BeautifulSoup(html_content, 'html.parser')
-                                for row in soup.find_all('tr'):
-                                    columns = row.find_all('td')
-                                    if len(columns) >= 3:
-                                        episode_text = columns[0].text.strip()
-                                        link = columns[1].find('a')['href']
-                                        single_data = {
-                                            "title": episode_text,
-                                            "url": link,
-                                            "season_number": current_season,
-                                        }
-                                        episode_data.append(single_data)
-        return episode_data
+    title = serie_data['props']['title']
+    serie_id = str(title['id'])
+     
+    if title['seasons_count'] > 0:
+        season_numbers = []
+        for season in title['seasons']:
+            season_numbers.append(season['number'])
+            for n in season_numbers:
+                url = path + "stagione-" + str(n)
+                season_data = get_streamingcommunity_json_page_data(url)
+                loaded_season = season_data['props']['loadedSeason']
+                for episode in loaded_season['episodes']:
+                    single_data = {
+                            "title": str(n) + "x" + str(episode['number']) + ": " + episode['name'],
+                            "url": base_url + "watch/" + serie_id + "?e=" + str(episode['id']),
+                            "season_number": n,
+                        }
+                    episode_data.append(single_data)
     else:
-        print(f"Failed to retrieve the page. Status code: {response.status_code}")
-        return None
+        single_data = {
+                "title": title['name'],
+                "url": base_url + "watch/" + serie_id,
+                "season_number": 0,
+            }
+        episode_data.append(single_data)
+
+    return episode_data
 
 def get_actual_serie_url(episode_url):
     video_url = episode_url
@@ -133,4 +131,6 @@ def get_actual_serie_url(episode_url):
 #print(get_streamingcommunity_episodes('https://streamingcommunity.claims/serietv/manifest/'))
 #print(get_actual_serie_url('https://uprot.net/msfi/amFBWE9TSDNIRENWMzQxY3Uya3ZyQT09'))
 #print(get_actual_serie_url('https://stayonline.pro/l/mVl88/'))
-print(get_streamingcommunity_search('search?q=manifest'))
+#print(get_streamingcommunity_search('search?q=manifest'))
+print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
+#print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/3069-ragazze-audaci'))
