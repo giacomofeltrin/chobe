@@ -1,3 +1,14 @@
+## [0.11.1](https://github.com/giacomofeltrin/chobe/compare/v0.11.0...v0.11.1) (2023-12-26)
+
+
+### Bug Fixes
+
+* duplicate episodes get_streamingcommunity_episodes ([10bcb62](https://github.com/giacomofeltrin/chobe/commit/10bcb6201de08cebe395d2ae9df44662d25da84c))
+* iframe url for single movies ([97711c4](https://github.com/giacomofeltrin/chobe/commit/97711c4132eb527454015389c65c021e7aad4420))
+* refactor get_actual_serie_url to get iframe source ([948127e](https://github.com/giacomofeltrin/chobe/commit/948127eb489beef6ee73fc3223d6ad9a95525b5f))
+
+
+
 # [0.11.0](https://github.com/giacomofeltrin/chobe/compare/v0.10.1...v0.11.0) (2023-12-26)
 
 
