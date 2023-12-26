@@ -99,38 +99,11 @@ def get_streamingcommunity_episodes(path):
     return episode_data
 
 def get_actual_serie_url(episode_url):
-    video_url = episode_url
-    if "uprot" in episode_url:
-        uprot_response = requests.get(episode_url)
-        if uprot_response.status_code == 200:
-            html_content = uprot_response.text
-            soup = BeautifulSoup(html_content, 'html.parser')
-            video_link_tag = soup.find('a', href=True)
-            video_url = video_link_tag['href'] if video_link_tag else None
-
-
-    '''
-    second_response = requests.get(episode_url)
-    second_html_content = second_response.text
-    second_soup = BeautifulSoup(second_html_content, 'html.parser')
-    watch_link = second_soup.find('a', href=lambda href: href and "watch?file" in href)
-    watch_url = watch_link['href']
-    third_response = requests.get(watch_url)
-    third_html_content = third_response.text
-    third_soup = BeautifulSoup(third_html_content, 'html.parser')
-    video_source = third_soup.find('source', type='video/mp4')
-    
-    if video_source:
-        video_url = video_source['src']
-    else:
-        # If 'video_source' is None, try scraping the M3U8 URL
-        video_url = scrape_m3u8_url(watch_url)
-    '''
-    return(video_url)
+    return(episode_url)
 
 #print(get_streamingcommunity_episodes('https://streamingcommunity.claims/serietv/manifest/'))
 #print(get_actual_serie_url('https://uprot.net/msfi/amFBWE9TSDNIRENWMzQxY3Uya3ZyQT09'))
 #print(get_actual_serie_url('https://stayonline.pro/l/mVl88/'))
 #print(get_streamingcommunity_search('search?q=manifest'))
-print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
+#print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
 #print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/3069-ragazze-audaci'))
