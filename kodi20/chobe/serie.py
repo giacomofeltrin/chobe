@@ -92,7 +92,7 @@ def get_streamingcommunity_episodes(path):
     else:
         single_data = {
                 "title": title['name'],
-                "url": base_url + "watch/" + serie_id,
+                "url": base_url + "iframe/" + serie_id,
                 "episode_number": 0,
             }
         episode_data.append(single_data)
@@ -135,6 +135,6 @@ def get_actual_serie_url(episode_url):
 #print(get_actual_serie_url('https://uprot.net/msfi/amFBWE9TSDNIRENWMzQxY3Uya3ZyQT09'))
 #print(get_actual_serie_url('https://stayonline.pro/l/mVl88/'))
 #print(get_streamingcommunity_search('search?q=manifest'))
-#print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
+print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
 #print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/3069-ragazze-audaci'))
-print(get_actual_serie_url('https://streamingcommunity.cz/iframe/1533?episode_id=14189'))
+#print(get_actual_serie_url('https://streamingcommunity.cz/iframe/1533?episode_id=14189'))
