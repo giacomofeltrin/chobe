@@ -1,3 +1,22 @@
+# [0.11.0](https://github.com/giacomofeltrin/chobe/compare/v0.10.1...v0.11.0) (2023-12-26)
+
+
+### Bug Fixes
+
+* extract both uprot and stayonline links ([3c1900a](https://github.com/giacomofeltrin/chobe/commit/3c1900a49f6cbdf5583c8aa360f825812710edff))
+* refactor get_streamingcommunity_search ([891ce44](https://github.com/giacomofeltrin/chobe/commit/891ce44f9d65eea55a78ebb8c8910928c52e33be))
+* simple refactor actual url ([ce586a8](https://github.com/giacomofeltrin/chobe/commit/ce586a846f12b904955d6120ebf45d5b7fe8af0a))
+
+
+### Features
+
+* add get series episodes ([dde4e20](https://github.com/giacomofeltrin/chobe/commit/dde4e206a1fdbdb717cbc3758145c565e9c139f3))
+* add main setup for serie and titles search ([91818f5](https://github.com/giacomofeltrin/chobe/commit/91818f5564f5b2bded466a447a5571e5ab9ef2ac))
+* refactor get_streamingcommunity_episodes ([040e30a](https://github.com/giacomofeltrin/chobe/commit/040e30abd02e205ec2dbc8cbcd338817f9210932))
+* setup serie episodes search ([8be56a7](https://github.com/giacomofeltrin/chobe/commit/8be56a7d565521f1829dcb7834d3a7f5a41a3cba))
+
+
+
 ## [0.10.1](https://github.com/giacomofeltrin/chobe/compare/v0.10.0...v0.10.1) (2023-11-18)
 
 
