@@ -8,7 +8,7 @@ from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
 from animeita import get_animesaturn_filter, get_animesaturn_search, get_animesaturn_episodes, get_actual_anime_url
-from serie import get_cb01_search, get_cb01_episodes, get_actual_serie_url
+from serie import get_streamingcommunity_search, get_streamingcommunity_episodes, get_actual_serie_url
 
 # Get the plugin url in plugin:// notation.
 URL = sys.argv[0]
@@ -103,7 +103,7 @@ def list_aepisodes(urlscheda):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def get_sepisodes(urlscheda):
-    videos = get_cb01_episodes(urlscheda)
+    videos = get_streamingcommunity_episodes(urlscheda)
     return videos
 
 def list_sepisodes(urlscheda):
@@ -176,19 +176,12 @@ def list_avideos(abutton):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def get_svideos(sbutton):
-    if sbutton == "Search Movie":
+    if sbutton == "Search":
         query = get_user_input() # User input via onscreen keyboard
         if not query:
             return [] # Return empty list if query is blank
-        subpath = "?s={}".format(quote(query))
-        videos = get_cb01_search(subpath)
-        return videos
-    if sbutton == "Search Serie":
-        query = get_user_input() # User input via onscreen keyboard
-        if not query:
-            return [] # Return empty list if query is blank
-        subpath = "serietv/?s={}".format(quote(query))
-        videos = get_cb01_search(subpath)
+        subpath = "search?q={}".format(quote(query))
+        videos = get_streamingcommunity_search(subpath)
         return videos
 
 def list_svideos(sbutton):
@@ -245,7 +238,7 @@ def list_animeita():
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(HANDLE)
 
-SBUTTONS = [ "Search Movie", "Search Serie" ]
+SBUTTONS = [ "Search" ]
 
 def get_sbuttons():
     return SBUTTONS

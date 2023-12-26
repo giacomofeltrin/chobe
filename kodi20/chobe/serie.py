@@ -6,13 +6,13 @@ from values import baseurl_serie
 
 base_url = baseurl_serie
 
-def get_cb01_search(subpath):
+def get_streamingcommunity_search(subpath):
 
     full_url = base_url + subpath
 
     # Make an HTTP GET request to fetch the HTML content
     response = requests.get(full_url)
-    serie_data = []
+    series_data = []
 
     # Check if the request was successful (status code 200)
     if response.status_code == 200:
@@ -21,42 +21,36 @@ def get_cb01_search(subpath):
         # Parse the HTML content with BeautifulSoup
         soup = BeautifulSoup(html_content, 'html.parser')
 
+        # Locate the element with id 'app' and extract the 'data-page' attribute
+        app_element = soup.find('div', {'id': 'app'})
+        if app_element:
+            data_page_value = app_element.get('data-page')
+            data_page_json = data_page_value.replace('&quot;', '"')
+            # If you want to convert it to a Python dictionary, you can use json.loads
+            serie_data = json.loads(data_page_json)
+            titles = serie_data['props']['titles']
 
-        # Find and extract the desired information
-        card_contents = soup.find_all('div', class_='card-content')
-
-        for card_content in card_contents:
-            title_link = card_content.find('a', href=True)
-            if title_link:
-                title = title_link.get_text(strip=True)
-                url = title_link['href']
-                
-                # Check if the img tag exists before accessing the src attribute
-                image_tag = card_content.find('img', src=True)
-                image_url = image_tag['src'] if image_tag else None
-                
-                plot = card_content.find('p').get_text(strip=True)
-
-                # Create a dictionary to store the extracted data
+            for title in titles:
+                name = title['name']
+                url = base_url + "titles/" + str(title['id'])
+                trimmed_url = baseurl_serie[8:]
+                image_url = "https://cdn." + trimmed_url + "images/" + title['images'][0]['filename']
+                plot = title['name']
                 single_data = {
-                    "title": title,
+                    "title": name,
                     "url": url,
                     "poster": image_url,
                     "plot": plot,
                     "year": 2023  # You can change the year value as needed
                 }
+                series_data.append(single_data)
 
-                serie_data.append(single_data)
-            else:
-                print(f"No title link found in card-content div.")
-
-        return serie_data
+        return series_data
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
-
-def get_cb01_episodes(path):
+def get_streamingcommunity_episodes(path):
     response = requests.get(path)
     episode_data = []
 
@@ -86,7 +80,6 @@ def get_cb01_episodes(path):
                                 }
                             episode_data.append(single_data)
                         else:
-                            print(l)
                             response_internal = requests.get(l)
                             if response_internal.status_code == 200:
                                 html_content = response_internal.text
@@ -102,17 +95,23 @@ def get_cb01_episodes(path):
                                             "season_number": current_season,
                                         }
                                         episode_data.append(single_data)
-
-
-
-
-
         return episode_data
     else:
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
 def get_actual_serie_url(episode_url):
+    video_url = episode_url
+    if "uprot" in episode_url:
+        uprot_response = requests.get(episode_url)
+        if uprot_response.status_code == 200:
+            html_content = uprot_response.text
+            soup = BeautifulSoup(html_content, 'html.parser')
+            video_link_tag = soup.find('a', href=True)
+            video_url = video_link_tag['href'] if video_link_tag else None
+
+
+    '''
     second_response = requests.get(episode_url)
     second_html_content = second_response.text
     second_soup = BeautifulSoup(second_html_content, 'html.parser')
@@ -128,9 +127,10 @@ def get_actual_serie_url(episode_url):
     else:
         # If 'video_source' is None, try scraping the M3U8 URL
         video_url = scrape_m3u8_url(watch_url)
+    '''
     return(video_url)
 
-#print(get_actual_anime_url('https://www.animesaturn.tv/ep/Boku-no-Hero-Academia-5-ITA-ep-5'))
-#print(get_actual_anime_url('https://www.animesaturn.tv/ep/Frieren-Beyond-Journeys-End-ep-1'))
-#print(get_animesaturn_episodes('https://www.animesaturn.tv/anime/Dorohedoro-aaaaa'))
-print(get_cb01_episodes('https://cb01.claims/serietv/manifest/'))
+#print(get_streamingcommunity_episodes('https://streamingcommunity.claims/serietv/manifest/'))
+#print(get_actual_serie_url('https://uprot.net/msfi/amFBWE9TSDNIRENWMzQxY3Uya3ZyQT09'))
+#print(get_actual_serie_url('https://stayonline.pro/l/mVl88/'))
+print(get_streamingcommunity_search('search?q=manifest'))
