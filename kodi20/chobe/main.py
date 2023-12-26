@@ -8,6 +8,7 @@ from xbmcaddon import Addon
 from xbmcvfs import translatePath
 
 from animeita import get_animesaturn_filter, get_animesaturn_search, get_animesaturn_episodes, get_actual_anime_url
+from serie import get_streamingcommunity_search, get_streamingcommunity_episodes, get_actual_serie_url
 
 # Get the plugin url in plugin:// notation.
 URL = sys.argv[0]
@@ -65,6 +66,13 @@ def play_avideo(episode_url):
     # Pass the item to the Kodi player.
     xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
 
+def play_svideo(episode_url):
+    path = get_actual_serie_url(episode_url)
+    # Create a playable item with a path to play.
+    play_item = xbmcgui.ListItem(path=path)
+    # Pass the item to the Kodi player.
+    xbmcplugin.setResolvedUrl(HANDLE, True, listitem=play_item)
+
 def get_aepisodes(urlscheda):
     videos = get_animesaturn_episodes(urlscheda)
     return videos
@@ -84,6 +92,35 @@ def list_aepisodes(urlscheda):
         # Create a URL for a plugin recursive call.
         # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
         url = get_url(action='aplay', video=video['url'])
+        # Add the list item to a virtual Kodi folder.
+        # is_folder = False means that this item won't open any sub-list.
+        is_folder = False
+        # Add our item to the Kodi virtual folder listing.
+        xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
+    # Add a sort method for the virtual folder items (alphabetically, ignore articles)
+    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    # Finish creating a virtual folder.
+    xbmcplugin.endOfDirectory(HANDLE)
+
+def get_sepisodes(urlscheda):
+    videos = get_streamingcommunity_episodes(urlscheda)
+    return videos
+
+def list_sepisodes(urlscheda):
+    # Get the list of videos in the search.
+    videos = get_sepisodes(urlscheda)
+    # Iterate through videos.
+    for video in videos:
+        # Create a list item with a text label and a thumbnail image.
+        list_item = xbmcgui.ListItem(label=video['title'])
+        # Set additional info for the list item.
+        list_item.setInfo('url', {'title': video['title'], 'episode_number': video['episode_number']})
+        # Set 'IsPlayable' property to 'true'.
+        # This is mandatory for playable items!
+        list_item.setProperty('IsPlayable', 'true')
+        # Create a URL for a plugin recursive call.
+        # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
+        url = get_url(action='splay', video=video['url'])
         # Add the list item to a virtual Kodi folder.
         # is_folder = False means that this item won't open any sub-list.
         is_folder = False
@@ -138,6 +175,40 @@ def list_avideos(abutton):
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(HANDLE)
 
+def get_svideos(sbutton):
+    if sbutton == "Search":
+        query = get_user_input() # User input via onscreen keyboard
+        if not query:
+            return [] # Return empty list if query is blank
+        subpath = "search?q={}".format(quote(query))
+        videos = get_streamingcommunity_search(subpath)
+        return videos
+
+def list_svideos(sbutton):
+    # Get the list of videos in the search.
+    videos = get_svideos(sbutton)
+    # Iterate through videos.
+    for video in videos:
+        # Create a list item with a text label and a thumbnail image.
+        list_item = xbmcgui.ListItem(label=video['title'])
+        # Set additional info for the list item.
+        list_item.setInfo('url', {'title': video['title'], 'year': video['year'], 'plot': video['plot']})
+        # Set graphics (thumbnail, fanart, banner, poster, landscape etc.) for the list item.
+        # Here we use the same image for all items for simplicity's sake.
+        # In a real-life plugin you need to set each image accordingly.
+        list_item.setArt({'poster': video['poster'], 'icon': video['poster'], 'fanart': video['poster']})
+        # Create a URL for a plugin recursive call.
+        # Example: plugin://plugin.video.example/?action=play&video=http://www.vidsplay.com/vids/crab.mp4
+        url = get_url(action='getsepisodes', video=video['url'])
+        # Add the list item to a virtual Kodi folder.
+        is_folder = True
+        # Add our item to the Kodi virtual folder listing.
+        xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
+    # Add a sort method for the virtual folder items (alphabetically, ignore articles)
+    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    # Finish creating a virtual folder.
+    xbmcplugin.endOfDirectory(HANDLE)
+
 ABUTTONS = [ "Search", "Recently Added", "Dub ITA" ]
 
 def get_abuttons():
@@ -167,18 +238,47 @@ def list_animeita():
     # Finish creating a virtual folder.
     xbmcplugin.endOfDirectory(HANDLE)
 
+SBUTTONS = [ "Search" ]
+
+def get_sbuttons():
+    return SBUTTONS
+
+def list_serie():
+    sbuttons = get_sbuttons()
+    # Iterate through categories
+    for sbutton in sbuttons:
+        # Create a list item with a text label and a thumbnail image.
+        list_item = xbmcgui.ListItem(label=sbutton)
+        # Set additional info for the list item.
+        # Here we use a category name for both properties for for simplicity's sake.
+        # setInfo allows to set various information for an item.
+        # For available properties see the following link:
+        # http://mirrors.xbmc.org/docs/python-docs/15.x-isengard/xbmcgui.html#ListItem-setInfo
+        list_item.setInfo('video', {'title': sbutton, 'genre': sbutton})
+        # Create a URL for a plugin recursive call.
+        # Example: plugin://plugin.video.example/?action=listing&category=Animals
+        url = get_url(action='sbutton', sbutton=sbutton)
+        # is_folder = True means that this item opens a sub-list of lower level items.
+        is_folder = True
+        # Add our item to the Kodi virtual folder listing.
+        xbmcplugin.addDirectoryItem(HANDLE, url, list_item, is_folder)
+    # Add a sort method for the virtual folder items (alphabetically, ignore articles)
+    xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_LABEL_IGNORE_THE)
+    # Finish creating a virtual folder.
+    xbmcplugin.endOfDirectory(HANDLE)
+
 CATEGORIES = [
-    {
-        'category': 'AnimeITA',
-        'icon': None,
-        'fanart': None,
-        'main_menu': 'list_animeita'
-    },
     {
         'category': 'Serie',
         'icon': None,
         'fanart': None,
         'main_menu': 'list_serie'
+    },
+    {
+        'category': 'AnimeITA',
+        'icon': None,
+        'fanart': None,
+        'main_menu': 'list_animeita'
     }
 ]
 
@@ -207,17 +307,30 @@ def router(paramstring):
     params = dict(parse_qsl(paramstring))
     if not params:
         list_categories()
+
     elif params['action'] == 'opencategory':
         if params['category_menu'] == 'list_animeita':
             list_animeita()
+        elif params['category_menu'] == 'list_serie':
+            list_serie()
         else: 
             list_animeita()
+
     elif params['action'] == 'abutton':
         list_avideos(params['abutton'])
+    elif params['action'] == 'sbutton':
+        list_svideos(params['sbutton'])
+
     elif params['action'] == 'getaepisodes':
         list_aepisodes(params['video'])
+    elif params['action'] == 'getsepisodes':
+        list_sepisodes(params['video'])
+
     elif params['action'] == 'aplay':
         play_avideo(params['video'])
+    elif params['action'] == 'splay':
+        play_svideo(params['video'])
+
     else:
         raise ValueError(f'Invalid paramstring: {paramstring}!')
 
