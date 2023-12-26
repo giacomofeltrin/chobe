@@ -3,6 +3,7 @@ import re
 import json
 from bs4 import BeautifulSoup
 from values import baseurl_serie
+from urllib.parse import parse_qs, urlparse
 
 base_url = baseurl_serie
 
@@ -84,22 +85,51 @@ def get_streamingcommunity_episodes(path):
                 for episode in loaded_season['episodes']:
                     single_data = {
                             "title": str(n) + "x" + str(episode['number']) + ": " + episode['name'],
-                            "url": base_url + "watch/" + serie_id + "?e=" + str(episode['id']),
-                            "season_number": n,
+                            "url": base_url + "iframe/" + serie_id + "?episode_id=" + str(episode['id']),
+                            "episode_number": episode['number'],
                         }
                     episode_data.append(single_data)
     else:
         single_data = {
                 "title": title['name'],
                 "url": base_url + "watch/" + serie_id,
-                "season_number": 0,
+                "episode_number": 0,
             }
         episode_data.append(single_data)
 
     return episode_data
 
 def get_actual_serie_url(episode_url):
-    return(episode_url)
+    response = requests.get(episode_url)
+    
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.content, 'html.parser')
+
+        # Find the iframe tag
+        iframe_tag = soup.find('iframe')
+        
+        if iframe_tag:
+            # Extract the video URL from the src attribute
+            iframe_src = iframe_tag.get('src')
+            response = requests.get(iframe_src)
+            
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.content, 'html.parser')
+                first_script = soup.body.find('script')
+                script_content = first_script.text
+        
+                video_id = re.search(r'"id":(\d+)', script_content).group(1)
+                token = re.search(r"'token': '([^']+)'", script_content).group(1)
+                token480p = re.search(r"'token480p': '([^']+)'", script_content).group(1)
+                token720p = re.search(r"'token720p': '([^']+)'", script_content).group(1)
+                expires = re.search(r"'expires': '([^']+)'", script_content).group(1)
+
+                
+                # Creating the video URL
+                video_url = f'https://vixcloud.co/playlist/{video_id}?token={token}&token480p={token480p}&token720p={token720p}&expires={expires}'
+                return video_url
+
+    return None
 
 #print(get_streamingcommunity_episodes('https://streamingcommunity.claims/serietv/manifest/'))
 #print(get_actual_serie_url('https://uprot.net/msfi/amFBWE9TSDNIRENWMzQxY3Uya3ZyQT09'))
@@ -107,3 +137,4 @@ def get_actual_serie_url(episode_url):
 #print(get_streamingcommunity_search('search?q=manifest'))
 #print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
 #print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/3069-ragazze-audaci'))
+print(get_actual_serie_url('https://streamingcommunity.cz/iframe/1533?episode_id=14189'))
