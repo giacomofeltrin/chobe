@@ -78,17 +78,17 @@ def get_streamingcommunity_episodes(path):
         season_numbers = []
         for season in title['seasons']:
             season_numbers.append(season['number'])
-            for n in season_numbers:
-                url = path + "stagione-" + str(n)
-                season_data = get_streamingcommunity_json_page_data(url)
-                loaded_season = season_data['props']['loadedSeason']
-                for episode in loaded_season['episodes']:
-                    single_data = {
-                            "title": str(n) + "x" + str(episode['number']) + ": " + episode['name'],
-                            "url": base_url + "iframe/" + serie_id + "?episode_id=" + str(episode['id']),
-                            "episode_number": episode['number'],
-                        }
-                    episode_data.append(single_data)
+        for n in season_numbers:
+            url = path + "/stagione-" + str(n)
+            season_data = get_streamingcommunity_json_page_data(url)
+            loaded_season = season_data['props']['loadedSeason']
+            for episode in loaded_season['episodes']:
+                single_data = {
+                        "title": str(n) + "x" + str(episode['number']) + ": " + episode['name'],
+                        "url": base_url + "iframe/" + serie_id + "?episode_id=" + str(episode['id']),
+                        "episode_number": episode['number'],
+                    }
+                episode_data.append(single_data)
     else:
         single_data = {
                 "title": title['name'],
@@ -135,6 +135,6 @@ def get_actual_serie_url(episode_url):
 #print(get_actual_serie_url('https://uprot.net/msfi/amFBWE9TSDNIRENWMzQxY3Uya3ZyQT09'))
 #print(get_actual_serie_url('https://stayonline.pro/l/mVl88/'))
 #print(get_streamingcommunity_search('search?q=manifest'))
-print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
+#print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/6881-tre-manifesti-a-ebbing-missouri/'))
 #print(get_streamingcommunity_episodes('https://streamingcommunity.cz/titles/3069-ragazze-audaci'))
 #print(get_actual_serie_url('https://streamingcommunity.cz/iframe/1533?episode_id=14189'))

@@ -269,7 +269,7 @@ def list_serie():
 
 CATEGORIES = [
     {
-        'category': 'Serie',
+        'category': 'Serie & Film',
         'icon': None,
         'fanart': None,
         'main_menu': 'list_serie'
