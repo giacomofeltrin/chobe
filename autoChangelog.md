@@ -1,3 +1,13 @@
+## [0.11.3](https://github.com/giacomofeltrin/chobe/compare/v0.11.2...v0.11.3) (2023-12-29)
+
+
+### Bug Fixes
+
+* update versioning in release pipeline ([21c7e65](https://github.com/giacomofeltrin/chobe/commit/21c7e652fa17d737bcecf752c1827a0fbf026b20))
+* **ver:** automatically update version in addon.xml ([611aafe](https://github.com/giacomofeltrin/chobe/commit/611aafe24f77f1af924d1714226212bd348272ba))
+
+
+
 ## [0.11.2](https://github.com/giacomofeltrin/chobe/compare/v0.11.1...v0.11.2) (2023-12-29)
 
 
