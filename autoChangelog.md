@@ -1,3 +1,12 @@
+## [0.11.4](https://github.com/giacomofeltrin/chobe/compare/v0.11.3...v0.11.4) (2023-12-29)
+
+
+### Bug Fixes
+
+* **cicd:** last version retrieval ([07fe581](https://github.com/giacomofeltrin/chobe/commit/07fe581f1c7f2585d5d33ce54c32ff336983a791))
+
+
+
 ## [0.11.3](https://github.com/giacomofeltrin/chobe/compare/v0.11.2...v0.11.3) (2023-12-29)
 
 
