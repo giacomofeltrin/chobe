@@ -1,3 +1,106 @@
+## [0.11.2](https://github.com/giacomofeltrin/chobe/compare/v0.11.1...v0.11.2) (2023-12-29)
+
+
+### Bug Fixes
+
+* restore readme ([49cd0e7](https://github.com/giacomofeltrin/chobe/commit/49cd0e7ed0e8c3569c6bd405d53754d4b8f53859))
+
+
+
+## [0.11.1](https://github.com/giacomofeltrin/chobe/compare/v0.11.0...v0.11.1) (2023-12-26)
+
+
+### Bug Fixes
+
+* duplicate episodes get_streamingcommunity_episodes ([10bcb62](https://github.com/giacomofeltrin/chobe/commit/10bcb6201de08cebe395d2ae9df44662d25da84c))
+* iframe url for single movies ([97711c4](https://github.com/giacomofeltrin/chobe/commit/97711c4132eb527454015389c65c021e7aad4420))
+* refactor get_actual_serie_url to get iframe source ([948127e](https://github.com/giacomofeltrin/chobe/commit/948127eb489beef6ee73fc3223d6ad9a95525b5f))
+
+
+
+# [0.11.0](https://github.com/giacomofeltrin/chobe/compare/v0.10.1...v0.11.0) (2023-12-26)
+
+
+### Bug Fixes
+
+* extract both uprot and stayonline links ([3c1900a](https://github.com/giacomofeltrin/chobe/commit/3c1900a49f6cbdf5583c8aa360f825812710edff))
+* refactor get_streamingcommunity_search ([891ce44](https://github.com/giacomofeltrin/chobe/commit/891ce44f9d65eea55a78ebb8c8910928c52e33be))
+* simple refactor actual url ([ce586a8](https://github.com/giacomofeltrin/chobe/commit/ce586a846f12b904955d6120ebf45d5b7fe8af0a))
+
+
+### Features
+
+* add get series episodes ([dde4e20](https://github.com/giacomofeltrin/chobe/commit/dde4e206a1fdbdb717cbc3758145c565e9c139f3))
+* add main setup for serie and titles search ([91818f5](https://github.com/giacomofeltrin/chobe/commit/91818f5564f5b2bded466a447a5571e5ab9ef2ac))
+* refactor get_streamingcommunity_episodes ([040e30a](https://github.com/giacomofeltrin/chobe/commit/040e30abd02e205ec2dbc8cbcd338817f9210932))
+* setup serie episodes search ([8be56a7](https://github.com/giacomofeltrin/chobe/commit/8be56a7d565521f1829dcb7834d3a7f5a41a3cba))
+
+
+
+## [0.10.1](https://github.com/giacomofeltrin/chobe/compare/v0.10.0...v0.10.1) (2023-11-18)
+
+
+### Bug Fixes
+
+* dubbed page search ([9aaac79](https://github.com/giacomofeltrin/chobe/commit/9aaac794bb93819ddf2f1737b4592b623ed60f0d))
+
+
+
+# [0.10.0](https://github.com/giacomofeltrin/chobe/compare/v0.9.7...v0.10.0) (2023-11-14)
+
+
+### Features
+
+* add basic page number search for dub ita anime ([f9e6aad](https://github.com/giacomofeltrin/chobe/commit/f9e6aad8c7a5465b2ff0642a6396ae1baf1b98d1))
+
+
+
+## [0.9.7](https://github.com/giacomofeltrin/chobe/compare/v0.9.6...v0.9.7) (2023-11-11)
+
+
+### Bug Fixes
+
+* **cd:** restore first zip path ([272ce26](https://github.com/giacomofeltrin/chobe/commit/272ce26505277bc04cfaa160cc05b85735952867))
+
+
+
+## [0.9.6](https://github.com/giacomofeltrin/chobe/compare/v0.9.5...v0.9.6) (2023-11-11)
+
+
+### Bug Fixes
+
+* restore first layer directory ([9831562](https://github.com/giacomofeltrin/chobe/commit/9831562480a2c773cf1fc8ba63ee68d9fface48c))
+
+
+
+## [0.9.5](https://github.com/giacomofeltrin/chobe/compare/v0.9.4...v0.9.5) (2023-11-10)
+
+
+### Bug Fixes
+
+* remove print from animeita.py ([c72cb22](https://github.com/giacomofeltrin/chobe/commit/c72cb225cbb363f0d6067efc1993032d9742d954))
+
+
+
+## [0.9.4](https://github.com/giacomofeltrin/chobe/compare/v0.9.3...v0.9.4) (2023-11-10)
+
+
+### Bug Fixes
+
+* restore resources paths ([531424a](https://github.com/giacomofeltrin/chobe/commit/531424a1ba55594ee3196f89de0bc7a48d86a6d2))
+* zip generator doesn't include root directory ([0d9af16](https://github.com/giacomofeltrin/chobe/commit/0d9af166822058980aea4ad82124a34f709dd228))
+
+
+
+## [0.9.3](https://github.com/giacomofeltrin/chobe/compare/v0.9.2...v0.9.3) (2023-11-09)
+
+
+### Bug Fixes
+
+* path to generated zip ([334d377](https://github.com/giacomofeltrin/chobe/commit/334d377de0248d415de67192515f6add7cee9ed8))
+
+
+
 ## [0.9.2](https://github.com/giacomofeltrin/chobe/compare/v0.9.1...v0.9.2) (2023-11-09)
 
 
