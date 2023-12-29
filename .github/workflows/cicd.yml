@@ -17,6 +17,13 @@ jobs:
         with:
           ref: 'main'
 
+      - name: Extract version and set as env variable
+        id: extract_new_version
+        run: |
+          DOT_VERSION=$(jq -r '.version' autoVersion.json)
+          NEW_VERSION=$(echo "$DOT_VERSION")
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
       - name: clean repo, execute py, commit
         run: |
           if [ -d "kodi20/zips" ]; then
@@ -40,6 +47,7 @@ jobs:
           git config --global user.name "action[bot]"
           git add --all
           git commit -m "Release"
+
 
       - name: Pushing to the protected branch 'main'
         id: push-to-protected
